@@ -38,3 +38,24 @@ Library* Library::getInstance()
 
     return instance;
 }
+
+void OperationStack::push(string n)
+{
+    operations.push_back(n);
+}
+
+string OperationStack::pull()
+{
+    if (operations.size() != 0)
+    {
+        string f = operations[operations.size()-1];
+        operations.pop_back();
+
+        return f;
+    }
+
+    else
+    {
+        return "Brak informacji o poprzednich operacjach";
+    }
+}

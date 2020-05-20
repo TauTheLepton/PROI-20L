@@ -50,8 +50,11 @@ class Book:public Issue
 class Magazine:public Issue
 {
     ///Klasa reprezentujaca czasopismo
+    private:
+        int number; /// zmienna oznaczajaca numer czasopisma
     public:
-
+        Magazine(int, string, int, int, string, int);
+        ~Magazine();
 };
 
 class ScientificWork:public Issue
@@ -71,6 +74,8 @@ class Audiobook:public Issue
         void showProperties();
 
 };
+
+void get_info();
 
 
 #endif // ELEMENTS_H_INCLUDED

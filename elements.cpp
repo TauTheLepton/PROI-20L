@@ -28,7 +28,20 @@ Audiobook::Audiobook(int id, string t, int y, int pag, string pub, string form)
 Audiobook::~Audiobook()
 {}
 
-void Book::showProperties()
+Magazine::Magazine(int id, string t, int y, int pag, string pub, int num)
+{
+    id_number = id;
+    title = t;
+    year = y;
+    pages = pag;
+    publisher = pub;
+    number = num;
+}
+
+Magazine::~Magazine()
+{}
+
+void Book::showProperties()///funkcja placeholderowa
 {
     cout<<"Numer ID: "<<id_number<<endl;
     cout<<"Tytul: "<<title<<endl;
@@ -37,12 +50,12 @@ void Book::showProperties()
     cout<<"Wydawca: "<<publisher<<endl;
 }
 
-void Audiobook::showProperties()
+void Audiobook::showProperties()///funkcja placeholderowa
 {
     cout<<"Numer ID: "<<id_number<<endl;
     cout<<"Tytul: "<<title<<endl;
     cout<<"Rok wydania: "<<year<<endl;
-    cout<<"Iloœæ stron: "<<pages<<endl;
+    cout<<"Ilosc stron: "<<pages<<endl;
     cout<<"Wydawca: "<<publisher<<endl;
     cout<<"Format: "<<format<<endl;
 }

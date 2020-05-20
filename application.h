@@ -26,15 +26,16 @@ class Library
         void showAssets();
 };
 
+
 class OperationStack
 {
     ///klasa odpowiedzialna za zapisywanie danych o operacjach wykonanych w programie
     private:
         vector<string> operations;
     public:
-        void push();
-        void pull();
-        void read();
+        void push(string);
+        string pull();
+        vector<string> read();
 };
 
 #endif // APPLICATION_H_INCLUDED
