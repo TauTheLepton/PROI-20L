@@ -30,6 +30,8 @@ class Issue
         int id_number;
         int year;
         int pages;
+        string authorName;
+        string authorSurname;
         //Author autor;
         string publisher;
     public:
@@ -42,7 +44,7 @@ class Book:public Issue
 {
     ///Klasa reprezentujaca ksiazke
     public:
-        Book(int, string, int, int, string);
+        Book(int, string, string, string, int, int, string);
         ~Book();
         void showProperties();
 };
@@ -53,8 +55,9 @@ class Magazine:public Issue
     private:
         int number; /// zmienna oznaczajaca numer czasopisma
     public:
-        Magazine(int, string, int, int, string, int);
+        Magazine(int, string, string, string, int, int, string, int);
         ~Magazine();
+        void showProperties();
 };
 
 class ScientificWork:public Issue
@@ -69,7 +72,7 @@ class Audiobook:public Issue
     private:
         string format;
     public:
-        Audiobook(int, string, int, int, string, string);
+        Audiobook(int, string, string, string, int, int, string, string);
         ~Audiobook();
         void showProperties();
 
