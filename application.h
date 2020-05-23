@@ -18,13 +18,21 @@ class Library
         Library(); ///blokuje konstruktor klasy, aby upewnic sie,
             /// ze istniec bedzie tylko jedna instancja klasy Library
         void read_from_file(); ///czyta zawartosc pliku data.csv i zapisuje ja do vektora issues
+        vector<Issue*> search_by_name(string);  ///szuka po imieniu, skladowa szukania ogolnego
+        vector<Issue*> search_by_surname(string);
+        vector<Issue*> search_by_id(int);
+        vector<Issue*> search_by_title(string);
+        vector<Issue*> search_by_year(int);
+        vector<Issue*> search_by_pages(int pages);
+        vector<Issue*> search_by_publisher(string publisher);
+        ///jest szukanie po kazdej rzeczy standardowej, teraz trzeba special
 
     public:
-        ~Library();
+        ~Library(); ///nie wiem czy dobrze zwalniam pamiec
         static Library* getInstance();///funkcja zwracajaca adres instancji biblioteki
         void add_to_library(Issue*);
-        vector<Issue*> search_by();
-        void showAssets();
+        vector<Issue*> search_by(int category, int liczba, string napis);  ///grupuje wszystkie poszczegulne seawrch by
+        void showAssets();  ///nie dzialal, program sie zapetlal, poprawilem
 };
 
 

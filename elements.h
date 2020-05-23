@@ -27,6 +27,7 @@ class Issue
     ///normalnego dla Audiobook
 
     protected:
+    public:                 ///na potrzeby testow
         int id_number;
         int year;
         int pages;
