@@ -18,6 +18,7 @@ Library::~Library()     ///nie mam pojecia czy dobrze zwlaniam pamiec
     {
         delete issues[i];
     }
+    // cout<<"Destoyed!"<<endl;
 }
 
 void Library::showAssets()
@@ -41,7 +42,7 @@ void Library::add_to_library(Issue* is)
     issues.push_back(is);
 }
 
-void Library::read_from_file()  ///trzeba zrobic dla SciWork
+void Library::read_from_file()
 {
     ifstream dataFile;
     dataFile.open("data.csv");
@@ -120,6 +121,25 @@ void Library::read_from_file()  ///trzeba zrobic dla SciWork
             Magazine* m = new Magazine(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special_int);
             this->add_to_library(m);
         }
+        else if(type=="ScientificWork")
+        {
+            getline(dataFile,id_number,',');
+            getline(dataFile,title,',');
+            getline(dataFile,authorName,',');
+            getline(dataFile,authorSurname,',');
+            getline(dataFile,year,',');
+            getline(dataFile,pages,',');
+            getline(dataFile,publisher,',');
+            getline(dataFile,special,'\n');
+            stringstream degree1(id_number);
+            degree1 >> id_number_int;
+            stringstream degree2(year);
+            degree2 >> year_int;
+            stringstream degree3(pages);
+            degree3 >> pages_int;
+            ScientificWork* a = new ScientificWork(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special);
+            this->add_to_library(a);
+        }
     }
     dataFile.close();
 }
@@ -150,6 +170,15 @@ vector<Issue*> Library::search_by(int category, int liczba, string napis)
         case 6:
             results=search_by_publisher(napis);
             break;
+        case 7:
+            results=search_by_number(liczba);
+            break;
+        case 8:
+            results=search_by_discipline(napis);
+            break;
+        case 9:
+            results=search_by_format(napis);
+            break;
     }
     return results;
 }
@@ -159,7 +188,7 @@ vector<Issue*> Library::search_by_name(string name)
     vector<Issue*> results;
     for(int i=0; i<issues.size(); i++)
     {
-        if (issues[i]->authorName==name)
+        if (issues[i]->get_name()==name)
         {
             results.push_back(issues[i]);
         }
@@ -172,7 +201,7 @@ vector<Issue*> Library::search_by_surname(string surname)
     vector<Issue*> results;
     for(int i=0; i<issues.size(); i++)
     {
-        if (issues[i]->authorSurname==surname)
+        if (issues[i]->get_surname()==surname)
         {
             results.push_back(issues[i]);
         }
@@ -185,7 +214,7 @@ vector<Issue*> Library::search_by_id(int id)
     vector<Issue*> results;
     for(int i=0; i<issues.size(); i++)
     {
-        if (issues[i]->id_number==id)
+        if (issues[i]->get_id()==id)
         {
             results.push_back(issues[i]);
         }
@@ -198,7 +227,7 @@ vector<Issue*> Library::search_by_title(string title)
     vector<Issue*> results;
     for(int i=0; i<issues.size(); i++)
     {
-        if (issues[i]->title==title)
+        if (issues[i]->get_title()==title)
         {
             results.push_back(issues[i]);
         }
@@ -211,7 +240,7 @@ vector<Issue*> Library::search_by_year(int year)
     vector<Issue*> results;
     for(int i=0; i<issues.size(); i++)
     {
-        if (issues[i]->year==year)
+        if (issues[i]->get_year()==year)
         {
             results.push_back(issues[i]);
         }
@@ -224,7 +253,7 @@ vector<Issue*> Library::search_by_pages(int pages)
     vector<Issue*> results;
     for(int i=0; i<issues.size(); i++)
     {
-        if (issues[i]->pages==pages)
+        if (issues[i]->get_pages()==pages)
         {
             results.push_back(issues[i]);
         }
@@ -237,7 +266,46 @@ vector<Issue*> Library::search_by_publisher(string publisher)
     vector<Issue*> results;
     for(int i=0; i<issues.size(); i++)
     {
-        if (issues[i]->publisher==publisher)
+        if (issues[i]->get_publisher()==publisher)
+        {
+            results.push_back(issues[i]);
+        }
+    }
+    return results;
+}
+
+vector<Issue*> Library::search_by_number(int number)
+{
+    vector<Issue*> results;
+    for(int i=0; i<issues.size(); i++)
+    {
+        if (issues[i]->get_number()==number)
+        {
+            results.push_back(issues[i]);
+        }
+    }
+    return results;
+}
+
+vector<Issue*> Library::search_by_discipline(string discipline)
+{
+    vector<Issue*> results;
+    for(int i=0; i<issues.size(); i++)
+    {
+        if (issues[i]->get_discipline()==discipline)
+        {
+            results.push_back(issues[i]);
+        }
+    }
+    return results;
+}
+
+vector<Issue*> Library::search_by_format(string format)
+{
+    vector<Issue*> results;
+    for(int i=0; i<issues.size(); i++)
+    {
+        if (issues[i]->get_format()==format)
         {
             results.push_back(issues[i]);
         }
