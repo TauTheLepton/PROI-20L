@@ -18,6 +18,7 @@ class Library
         Library(); ///blokuje konstruktor klasy, aby upewnic sie,
             /// ze istniec bedzie tylko jedna instancja klasy Library
         void read_from_file(); ///czyta zawartosc pliku data.csv i zapisuje ja do vektora issues
+        void save_to_file();
         vector<Issue*> search_by_name(string);  ///szuka po imieniu, skladowa szukania ogolnego
         vector<Issue*> search_by_surname(string);
         vector<Issue*> search_by_id(int);
