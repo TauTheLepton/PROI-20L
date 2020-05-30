@@ -214,45 +214,6 @@ void Library::save_to_file()
     save_file.close();
 }
 
-vector<Issue*> Library::search_by(int category, int liczba, string napis)
-{
-    vector<Issue*> results;
-    switch(category)
-    {
-        case 0:
-            results=search_by_title(napis);
-            break;
-        case 1:
-            results=search_by_id(liczba);
-            break;
-        case 2:
-            results=search_by_name(napis);
-            break;
-        case 3:
-            results=search_by_surname(napis);
-            break;
-        case 4:
-            results=search_by_year(liczba);
-            break;
-        case 5:
-            results=search_by_pages(liczba);
-            break;
-        case 6:
-            results=search_by_publisher(napis);
-            break;
-        case 7:
-            results=search_by_number(liczba);
-            break;
-        case 8:
-            results=search_by_discipline(napis);
-            break;
-        case 9:
-            results=search_by_format(napis);
-            break;
-    }
-    return results;
-}
-
 vector<Issue*> Library::search_by_name(string name)
 {
     vector<Issue*> results;
@@ -379,6 +340,46 @@ vector<Issue*> Library::search_by_format(string format)
         {
             results.push_back(issues[i]);
         }
+    }
+    return results;
+}
+
+
+vector<Issue*> Library::search_by(int category, int liczba, string napis)
+{
+    vector<Issue*> results;
+    switch(category)
+    {
+        case 0:
+            results=search_by_id(liczba);
+            break;
+        case 1:
+            results=search_by_title(napis);
+            break;
+        case 2:
+            results=search_by_name(napis);
+            break;
+        case 3:
+            results=search_by_surname(napis);
+            break;
+        case 4:
+            results=search_by_year(liczba);
+            break;
+        case 5:
+            results=search_by_publisher(napis);
+            break;
+        case 6:
+            results=search_by_pages(liczba);
+            break;
+        case 7:
+            results=search_by_number(liczba);
+            break;
+        case 8:
+            results=search_by_discipline(napis);
+            break;
+        case 9:
+            results=search_by_format(napis);
+            break;
     }
     return results;
 }

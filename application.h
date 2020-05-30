@@ -13,10 +13,10 @@ class Library
 
     private:
         static Library* instance;
-    public:                                 ///tymczasowo publiczne do testowania
         vector<Issue*> issues;
         Library(); ///blokuje konstruktor klasy, aby upewnic sie,
             /// ze istniec bedzie tylko jedna instancja klasy Library
+    public:                                 ///tymczasowo publiczne do testowania
         void read_from_file(); ///czyta zawartosc pliku data.csv i zapisuje ja do vektora issues
         void save_to_file();
         vector<Issue*> search_by_name(string);  ///szuka po imieniu, skladowa szukania ogolnego

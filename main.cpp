@@ -1,5 +1,6 @@
 #include <iostream>
 #include "application.h"
+#include <typeinfo>
 
 using namespace std;
 
@@ -8,41 +9,17 @@ int main()
     ///Tutaj bedzie jakis event loop
 
     ///to tak tylko do testowania
-    Library lib;
-    lib.read_from_file();
-    lib.showAssets();   ///ladnie pokazuje zawartosc
-    vector<Issue*> results;
-    results=lib.search_by(0, 0, "Ferdydurke");  ///szukanie po tytule
-    cout<<results.size()<<endl;
-    cout<<results[0]->get_name()<<endl;
-    results=lib.search_by(1, 2, "Gombrowicz");  ///szukanie po id
-    cout<<results.size()<<endl;
-    cout<<results[0]->get_name()<<endl;
-    results=lib.search_by(2, 0, "imie1");   ///szukanie po imieniu
-    cout<<results.size()<<endl;
-    cout<<results[0]->get_name()<<endl;
-    results=lib.search_by(3, 0, "Christie");    ///szukanie po nazwisku
-    cout<<results.size()<<endl;
-    cout<<results[0]->get_name()<<endl;
-    results=lib.search_by(4, 1937, "Gombrowicz");   ///szukanie po roku
-    cout<<results.size()<<endl;
-    cout<<results[0]->get_name()<<endl;
-    cout<<results[1]->get_name()<<endl;
-    results=lib.search_by(5, 30, "Gombrowicz"); ///szukanie po stronach
-    cout<<results.size()<<endl;
-    cout<<results[0]->get_name()<<endl;
-    results=lib.search_by(6, 0, "wydawca3");    ///szukanie po wydawcy
-    cout<<results.size()<<endl;
-    cout<<results[0]->get_name()<<endl;
-    results=lib.search_by(7, 3, "wydawca3");    ///szukanie po numerze
-    cout<<results.size()<<endl;
-    cout<<results[0]->get_name()<<endl;
-    results=lib.search_by(8, 0, "Chemistry");   ///szukanie po dziedzinie
-    cout<<results.size()<<endl;
-    cout<<results[0]->get_name()<<endl;
-    results=lib.search_by(9, 0, "format2"); ///szukanie po formacie
-    cout<<results.size()<<endl;
-    cout<<results[0]->get_name()<<endl;
+    Library* lib = Library::getInstance();
+
+    lib->read_from_file();
+    lib->showAssets();
+
+    vector<Issue*> tak = lib->search_by_discipline("Chemistry");
+
+    Book f(1,"d","d","d",4,2,"dsad");
+    Issue* d = &f;
+
+    lib->save_to_file();
 
     return 0;
 }
