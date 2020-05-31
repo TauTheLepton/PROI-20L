@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 192
-  Top = 125
-  Width = 1305
-  Height = 675
+  Left = 643
+  Top = 343
+  Width = 964
+  Height = 679
   Caption = 'Form1'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -14,13 +14,6 @@ object Form1: TForm1
   Visible = True
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
-    Left = 952
-    Top = 288
-    Width = 282
-    Height = 13
-    Caption = 'W tym miejscu chyba b'#281'd'#261' si'#281' wyswietla'#322'y dane o rekordzie'
-  end
   object ComboBox1: TComboBox
     Left = 288
     Top = 176
@@ -73,6 +66,7 @@ object Form1: TForm1
     Height = 25
     Caption = 'Poka'#380
     TabOrder = 5
+    OnClick = Button4Click
   end
   object Edit1: TEdit
     Left = 128
@@ -98,5 +92,14 @@ object Form1: TForm1
     Caption = 'Poka'#380' wszystkie rekordy'
     TabOrder = 8
     OnClick = Button5Click
+  end
+  object Button6: TButton
+    Left = 64
+    Top = 552
+    Width = 201
+    Height = 57
+    Caption = 'Ostatnia operacja'
+    TabOrder = 9
+    OnClick = Button6Click
   end
 end

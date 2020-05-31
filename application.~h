@@ -14,6 +14,7 @@ class Library
     private:
         static Library* instance;
         vector<Issue*> issues;
+        vector<Issue*> last_results;
         Library(); ///blokuje konstruktor klasy, aby upewnic sie,
             /// ze istniec bedzie tylko jedna instancja klasy Library
     public:                                 ///tymczasowo publiczne do testowania
@@ -29,6 +30,9 @@ class Library
         vector<Issue*> search_by_number(int);
         vector<Issue*> search_by_discipline(string);
         vector<Issue*> search_by_format(string);
+        vector<Issue*> getIssues();
+        //vector<Issue*> getLastResults();
+        //void assign_results(vector<Issue*>);
         ///jest szukanie po kazdej rzeczy standardowej, teraz trzeba special
 
     public:

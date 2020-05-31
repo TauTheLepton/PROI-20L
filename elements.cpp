@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include "elements.h"
 
 using namespace std;
@@ -97,6 +98,23 @@ string Issue::get_publisher()
     return publisher;
 }
 
+bool Issue::get_is_available()
+{
+    return is_available;
+}
+
+void Issue::change_status()
+{
+    if (is_available == true)
+    {
+        is_available = false;
+    }
+    else
+    {
+        is_available = true;
+    }
+}
+
 ///zaczyna sie wirtualne na numer dziedzine i format
 
 int Book::get_number()
@@ -166,6 +184,61 @@ string ScientificWork::get_format()
 {
     string i="NONE";
     return i;
+}
+
+string Book::get_info()
+{
+    ostringstream ss;
+
+    ss<<"Tytul: "<<this->get_title()<<"\n";
+    ss<<"Autor: "<<this->get_name()<<" "<<this->get_surname()<<"\n";
+    ss<<"Rok wydania: "<<this->get_year()<<"\n";
+    ss<<"Wydawca: "<<this->get_publisher()<<"\n";
+    ss<<"Liczba stron: "<<this->get_pages();
+
+    return ss.str();
+}
+
+string Audiobook::get_info()
+{
+    ostringstream ss;
+
+    ss<<"Tytul: "<<this->get_title()<<"\n";
+    ss<<"Autor: "<<this->get_name()<<" "<<this->get_surname()<<"\n";
+    ss<<"Rok wydania: "<<this->get_year()<<"\n";
+    ss<<"Wydawca: "<<this->get_publisher()<<"\n";
+    ss<<"Format: "<<this->get_format()<<"\n";
+    ss<<"Dlugosc w minutach: "<<this->get_pages();
+
+    return ss.str();
+}
+
+string Magazine::get_info()
+{
+    ostringstream ss;
+
+    ss<<"Tytul: "<<this->get_title()<<"\n";
+    ss<<"Autor: "<<this->get_name()<<" "<<this->get_surname()<<"\n";
+    ss<<"Rok wydania: "<<this->get_year()<<"\n";
+    ss<<"Numer: "<<this->get_number()<<"\n";
+    ss<<"Wydawca: "<<this->get_publisher()<<"\n";
+    ss<<"Liczba stron: "<<this->get_pages();
+
+    return ss.str();
+}
+
+string ScientificWork::get_info()
+{
+    ostringstream ss;
+
+    ss<<"Tytul: "<<this->get_title()<<"\n";
+    ss<<"Autor: "<<this->get_name()<<" "<<this->get_surname()<<"\n";
+    ss<<"Dziedzina naukowa: "<<this->get_discipline()<<"\n";
+    ss<<"Rok wydania: "<<this->get_year()<<"\n";
+    ss<<"Wydawca: "<<this->get_publisher()<<"\n";
+    ss<<"Liczba stron: "<<this->get_pages();
+
+    return ss.str();
 }
 
 void Book::showProperties()///funkcja placeholderowa

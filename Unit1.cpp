@@ -14,6 +14,7 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm1 *Form1;
+OperationStack stack;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
@@ -21,6 +22,8 @@ __fastcall TForm1::TForm1(TComponent* Owner)
         //
         Library* g = Library::getInstance();
         g->read_from_file();
+
+        stack.push("Wczytano dane z pliku");
 
         ComboBox1->Items->Add("Dowolny");
         ComboBox1->Items->Add("Ksi¹¿ka");
@@ -103,6 +106,8 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
         {
                 ListBox1->Items->Add(issues[x]->get_title().c_str());
         }
+
+        Form1->res = issues;
 }
 //---------------------------------------------------------------------------
 
@@ -259,11 +264,12 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 
               }
 
-        for(int w = 0; w<results.size(); w++)
-        {
-                ListBox1->Items->Add(results[w]->get_title().c_str());
-        }
+        Form1->res = results;
 
+        for(int i=0;i<Form1->res.size();i++)
+        {
+                ListBox1->Items->Add(Form1->res[i]->get_title().c_str());
+        }
 }
 //---------------------------------------------------------------------------
 
@@ -278,6 +284,23 @@ void __fastcall TForm1::Edit1Change(TObject *Sender)
         {
                 Button1->Enabled = true;
         }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button4Click(TObject *Sender)
+{
+        Library* g = Library::getInstance();
+        int a = ListBox1->ItemIndex;
+        ShowMessage(Form1->res[a]->get_info().c_str());
+
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::Button6Click(TObject *Sender)
+{
+        ShowMessage(stack.pull().c_str());        
 }
 //---------------------------------------------------------------------------
 

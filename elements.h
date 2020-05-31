@@ -6,19 +6,6 @@
 
 using namespace std;
 
-class Author
-{
-    ///Klasa reprezentujaca autora
-    private:
-        string name;
-        string surname;
-        //Date birth_date;
-        //vector<string> pseudonyms;
-    public:
-        Author(string,string);
-        ~Author();
-};
-
 class Issue
 {
     ///Klasa reprezentujaca egzemplarz danego wydania
@@ -33,8 +20,9 @@ class Issue
         int pages;
         string authorName;
         string authorSurname;
-        //Author autor;
         string publisher;
+        string title;
+        bool is_available; ///zmienna sprawdzajaca, czy ksiazka jest wypozyczona
     public:
         int get_id();
         string get_title();
@@ -43,10 +31,11 @@ class Issue
         int get_year();
         int get_pages();
         string get_publisher();
+        bool get_is_available();
+        virtual string get_info() = 0;
         virtual int get_number() = 0;
         virtual string get_discipline() = 0;
         virtual string get_format() = 0;
-        string title;
         virtual void showProperties() = 0;
 
 };
@@ -61,6 +50,7 @@ class Book:public Issue
         int get_number();
         string get_discipline();
         string get_format();
+        string get_info();
 };
 
 class Magazine:public Issue
@@ -75,6 +65,7 @@ class Magazine:public Issue
         int get_number();
         string get_discipline();
         string get_format();
+        string get_info();
 };
 
 class ScientificWork:public Issue
@@ -89,6 +80,7 @@ class ScientificWork:public Issue
         int get_number();
         string get_discipline();
         string get_format();
+        string get_info();
 };
 
 class Audiobook:public Issue
@@ -104,10 +96,9 @@ class Audiobook:public Issue
         int get_number();
         string get_discipline();
         string get_format();
-
+        string get_info();
 };
 
-void get_info();
 
 
 #endif // ELEMENTS_H_INCLUDED

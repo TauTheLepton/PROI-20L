@@ -389,7 +389,15 @@ vector<Issue*> Library::getIssues()
     return issues;
 }
 
+vector<Issue*> Library::getLastResults()
+{
+    return last_results;
+}
 
+void Library::assign_results(vector<Issue*> f)
+{
+    last_results = f;
+}
 Library* Library::instance = 0;
 
 Library* Library::getInstance()

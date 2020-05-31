@@ -16,7 +16,8 @@ class Library
         vector<Issue*> issues;
         Library(); ///blokuje konstruktor klasy, aby upewnic sie,
             /// ze istniec bedzie tylko jedna instancja klasy Library
-    public:                                 ///tymczasowo publiczne do testowania
+    public:
+        vector<Issue*> last_results;                                 ///tymczasowo publiczne do testowania
         void read_from_file(); ///czyta zawartosc pliku data.csv i zapisuje ja do vektora issues
         void save_to_file();
         vector<Issue*> search_by_name(string);  ///szuka po imieniu, skladowa szukania ogolnego
@@ -30,6 +31,8 @@ class Library
         vector<Issue*> search_by_discipline(string);
         vector<Issue*> search_by_format(string);
         vector<Issue*> getIssues();
+        //vector<Issue*> getLastResults();
+        //void assign_results(vector<Issue*>);
         ///jest szukanie po kazdej rzeczy standardowej, teraz trzeba special
 
     public:
