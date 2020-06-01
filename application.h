@@ -49,12 +49,14 @@ class OperationStack
 {
     ///klasa odpowiedzialna za zapisywanie danych o operacjach wykonanych w programie
     private:
-        vector<string> operations;
+        static vector<string> operations;
     public:
         void push(string);
         string pull();
         vector<string> read();
 };
+
+vector<string> OperationStack::operations; ///inicjalizacja statycznego wektora
 
 ///funkcja pomocnicza stworzona z mysla o OperationStack
 ///type - rodzaj operacji

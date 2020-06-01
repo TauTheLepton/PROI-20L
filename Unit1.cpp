@@ -5,6 +5,7 @@
 
 #include "Unit1.h"
 #include "Unit2.h"
+#include "Unit3.h"
 #include <vector>
 #include "application.h"
 #include "elements.h"
@@ -375,7 +376,7 @@ void __fastcall TForm1::Button7Click(TObject *Sender)
 {
         /// przycisk do wyswietlania kreatora egzemplarza
 
-
+        Form3->ShowModal();
 }
 //---------------------------------------------------------------------------
 
