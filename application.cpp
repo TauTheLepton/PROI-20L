@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <typeinfo>
 
 using namespace std;
 
@@ -144,43 +145,73 @@ void Library::read_from_file()
     dataFile.close();
 }
 
-vector<Issue*> Library::search_by(int category, int liczba, string napis)
+void Library::save_to_file()
 {
-    vector<Issue*> results;
-    switch(category)
+    ofstream save_file;
+    save_file.open("data.csv", ios::out);
+
+    for (int i=0; i<issues.size(); i++)
     {
-        case 0:
-            results=search_by_title(napis);
-            break;
-        case 1:
-            results=search_by_id(liczba);
-            break;
-        case 2:
-            results=search_by_name(napis);
-            break;
-        case 3:
-            results=search_by_surname(napis);
-            break;
-        case 4:
-            results=search_by_year(liczba);
-            break;
-        case 5:
-            results=search_by_pages(liczba);
-            break;
-        case 6:
-            results=search_by_publisher(napis);
-            break;
-        case 7:
-            results=search_by_number(liczba);
-            break;
-        case 8:
-            results=search_by_discipline(napis);
-            break;
-        case 9:
-            results=search_by_format(napis);
-            break;
+        ///z pomoca funkcji typeid() sprawdzam typ kazdego z egzemplarzy
+
+        if((string)typeid(*issues[i]).name()=="9Audiobook")
+        {
+            save_file<<"Audiobook\n";
+            int t1 = issues[i]->get_id();
+            string t2 = issues[i]->get_title();
+            string t3 = issues[i]->get_name();
+            string t4 = issues[i]->get_surname();
+            int t5 = issues[i]->get_year();
+            int t6 = issues[i]->get_pages();
+            string t7 = issues[i]->get_publisher();
+            string t8 = issues[i]->get_format();
+            save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<"\n";
+
+        }
+
+        else if((string)typeid(*issues[i]).name()=="4Book")
+        {
+            save_file<<"Book\n";
+            int t1 = issues[i]->get_id();
+            string t2 = issues[i]->get_title();
+            string t3 = issues[i]->get_name();
+            string t4 = issues[i]->get_surname();
+            int t5 = issues[i]->get_year();
+            int t6 = issues[i]->get_pages();
+            string t7 = issues[i]->get_publisher();
+            save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<"\n";
+        }
+
+        else if((string)typeid(*issues[i]).name()=="8Magazine")
+        {
+            save_file<<"Magazine\n";
+            int t1 = issues[i]->get_id();
+            string t2 = issues[i]->get_title();
+            string t3 = issues[i]->get_name();
+            string t4 = issues[i]->get_surname();
+            int t5 = issues[i]->get_year();
+            int t6 = issues[i]->get_pages();
+            string t7 = issues[i]->get_publisher();
+            int t8 = issues[i]->get_number();
+            save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<"\n";
+        }
+
+        else if((string)typeid(*issues[i]).name()=="14ScientificWork")
+        {
+            save_file<<"ScientificWork\n";
+            int t1 = issues[i]->get_id();
+            string t2 = issues[i]->get_title();
+            string t3 = issues[i]->get_name();
+            string t4 = issues[i]->get_surname();
+            int t5 = issues[i]->get_year();
+            int t6 = issues[i]->get_pages();
+            string t7 = issues[i]->get_publisher();
+            string t8 = issues[i]->get_discipline();
+            save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<"\n";
+        }
     }
-    return results;
+
+    save_file.close();
 }
 
 vector<Issue*> Library::search_by_name(string name)
@@ -313,6 +344,46 @@ vector<Issue*> Library::search_by_format(string format)
     return results;
 }
 
+
+vector<Issue*> Library::search_by(int category, int liczba, string napis)
+{
+    vector<Issue*> results;
+    switch(category)
+    {
+        case 0:
+            results=search_by_id(liczba);
+            break;
+        case 1:
+            results=search_by_title(napis);
+            break;
+        case 2:
+            results=search_by_name(napis);
+            break;
+        case 3:
+            results=search_by_surname(napis);
+            break;
+        case 4:
+            results=search_by_year(liczba);
+            break;
+        case 5:
+            results=search_by_publisher(napis);
+            break;
+        case 6:
+            results=search_by_pages(liczba);
+            break;
+        case 7:
+            results=search_by_number(liczba);
+            break;
+        case 8:
+            results=search_by_discipline(napis);
+            break;
+        case 9:
+            results=search_by_format(napis);
+            break;
+    }
+    return results;
+}
+
 Library* Library::instance = 0;
 
 Library* Library::getInstance()
@@ -345,3 +416,4 @@ string OperationStack::pull()
         return "Brak informacji o poprzednich operacjach";
     }
 }
+
