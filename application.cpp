@@ -60,6 +60,9 @@ void Library::read_from_file()
     string title;
     string special;
     int special_int;
+    string status;
+    bool status_bool;
+
     Issue* temp2;
     while(dataFile.good())
     {
@@ -72,14 +75,23 @@ void Library::read_from_file()
             getline(dataFile,authorSurname,',');
             getline(dataFile,year,',');
             getline(dataFile,pages,',');
-            getline(dataFile,publisher,'\n');
+            getline(dataFile,publisher,',');
+            getline(dataFile,status,'\n');
             stringstream degree1(id_number);
             degree1 >> id_number_int;
             stringstream degree2(year);
             degree2 >> year_int;
             stringstream degree3(pages);
             degree3 >> pages_int;
-            Book* b = new Book(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher);
+            if(status == "true")
+            {
+                status_bool = true;
+            }
+            else if(status == "false")
+            {
+                status_bool = false;
+            }
+            Book* b = new Book(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, status_bool);
             this->add_to_library(b);
         }
         else if(type=="Audiobook")
@@ -91,14 +103,23 @@ void Library::read_from_file()
             getline(dataFile,year,',');
             getline(dataFile,pages,',');
             getline(dataFile,publisher,',');
-            getline(dataFile,special,'\n');
+            getline(dataFile,special,',');
+            getline(dataFile,status,'\n');
             stringstream degree1(id_number);
             degree1 >> id_number_int;
             stringstream degree2(year);
             degree2 >> year_int;
             stringstream degree3(pages);
             degree3 >> pages_int;
-            Audiobook* a = new Audiobook(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special);
+            if(status == "true")
+            {
+                status_bool = true;
+            }
+            else if(status == "false")
+            {
+                status_bool = false;
+            }
+            Audiobook* a = new Audiobook(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special, status_bool);
             this->add_to_library(a);
         }
         else if(type=="Magazine")
@@ -110,7 +131,8 @@ void Library::read_from_file()
             getline(dataFile,year,',');
             getline(dataFile,pages,',');
             getline(dataFile,publisher,',');
-            getline(dataFile,special,'\n');
+            getline(dataFile,special,',');
+            getline(dataFile,status,'\n');
             stringstream degree1(id_number);
             degree1 >> id_number_int;
             stringstream degree2(year);
@@ -119,7 +141,15 @@ void Library::read_from_file()
             degree3 >> pages_int;
             stringstream degree4(special);
             degree4 >> special_int;
-            Magazine* m = new Magazine(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special_int);
+            if(status == "true")
+            {
+                status_bool = true;
+            }
+            else if(status == "false")
+            {
+                status_bool = false;
+            }
+            Magazine* m = new Magazine(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special_int, status_bool);
             this->add_to_library(m);
         }
         else if(type=="ScientificWork")
@@ -131,14 +161,23 @@ void Library::read_from_file()
             getline(dataFile,year,',');
             getline(dataFile,pages,',');
             getline(dataFile,publisher,',');
-            getline(dataFile,special,'\n');
+            getline(dataFile,special,',');
+            getline(dataFile,status,'\n');
             stringstream degree1(id_number);
             degree1 >> id_number_int;
             stringstream degree2(year);
             degree2 >> year_int;
             stringstream degree3(pages);
             degree3 >> pages_int;
-            ScientificWork* a = new ScientificWork(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special);
+            if(status == "true")
+            {
+                status_bool = true;
+            }
+            else if(status == "false")
+            {
+                status_bool = false;
+            }
+            ScientificWork* a = new ScientificWork(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special, status_bool);
             this->add_to_library(a);
         }
     }
@@ -154,7 +193,7 @@ void Library::save_to_file()
     {
         ///z pomoca funkcji typeid() sprawdzam typ kazdego z egzemplarzy
 
-        if((string)typeid(*issues[i]).name()=="9Audiobook")
+        if((string)typeid(*issues[i]).name()=="Audiobook")
         {
             save_file<<"Audiobook\n";
             int t1 = issues[i]->get_id();
@@ -165,11 +204,12 @@ void Library::save_to_file()
             int t6 = issues[i]->get_pages();
             string t7 = issues[i]->get_publisher();
             string t8 = issues[i]->get_format();
-            save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<"\n";
+            string t9 = issues[i]->get_is_available()?"true":"false";
+            save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<","<<t9<<"\n";
 
         }
 
-        else if((string)typeid(*issues[i]).name()=="4Book")
+        else if((string)typeid(*issues[i]).name()=="Book")
         {
             save_file<<"Book\n";
             int t1 = issues[i]->get_id();
@@ -179,10 +219,11 @@ void Library::save_to_file()
             int t5 = issues[i]->get_year();
             int t6 = issues[i]->get_pages();
             string t7 = issues[i]->get_publisher();
-            save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<"\n";
+            string t8 = issues[i]->get_is_available()?"true":"false";
+            save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<"\n";
         }
 
-        else if((string)typeid(*issues[i]).name()=="8Magazine")
+        else if((string)typeid(*issues[i]).name()=="Magazine")
         {
             save_file<<"Magazine\n";
             int t1 = issues[i]->get_id();
@@ -193,10 +234,11 @@ void Library::save_to_file()
             int t6 = issues[i]->get_pages();
             string t7 = issues[i]->get_publisher();
             int t8 = issues[i]->get_number();
-            save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<"\n";
+            string t9 = issues[i]->get_is_available()?"true":"false";
+            save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<","<<t9<<"\n";
         }
 
-        else if((string)typeid(*issues[i]).name()=="14ScientificWork")
+        else if((string)typeid(*issues[i]).name()=="ScientificWork")
         {
             save_file<<"ScientificWork\n";
             int t1 = issues[i]->get_id();
@@ -207,7 +249,8 @@ void Library::save_to_file()
             int t6 = issues[i]->get_pages();
             string t7 = issues[i]->get_publisher();
             string t8 = issues[i]->get_discipline();
-            save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<"\n";
+            string t9 = issues[i]->get_is_available()?"true":"false";
+            save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<","<<t9<<"\n";
         }
     }
 

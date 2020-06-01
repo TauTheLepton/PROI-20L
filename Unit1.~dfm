@@ -12,6 +12,7 @@ object Form1: TForm1
   Font.Style = []
   OldCreateOrder = False
   Visible = True
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object ComboBox1: TComboBox
@@ -58,6 +59,7 @@ object Form1: TForm1
     Height = 25
     Caption = 'Wypo'#380'ycz'
     TabOrder = 4
+    OnClick = Button2Click
   end
   object Button4: TButton
     Left = 512
@@ -83,6 +85,7 @@ object Form1: TForm1
     Height = 353
     ItemHeight = 13
     TabOrder = 7
+    OnClick = ListBox1Click
   end
   object Button5: TButton
     Left = 168

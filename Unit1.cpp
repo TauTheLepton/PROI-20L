@@ -22,6 +22,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
         //
         Library* g = Library::getInstance();
         g->read_from_file();
+        
 
         stack.push("Wczytano dane z pliku");
 
@@ -301,6 +302,35 @@ void __fastcall TForm1::Button4Click(TObject *Sender)
 void __fastcall TForm1::Button6Click(TObject *Sender)
 {
         ShowMessage(stack.pull().c_str());        
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action)
+{
+       Library* g = Library::getInstance();
+
+       g->save_to_file();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+        Library* g = Library::getInstance();
+
+        int a = ListBox1->ItemIndex;
+
+        Form1->res[a]->change_status();
+        bool status = Form1->res[a]->get_is_available();
+        Button2->Caption = status?"Wypozycz":"Zwroc";        
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::ListBox1Click(TObject *Sender)
+{
+        int a = ListBox1->ItemIndex;
+        bool status = Form1->res[a]->get_is_available();
+        Button2->Caption = status?"Wypozycz":"Zwroc";
 }
 //---------------------------------------------------------------------------
 

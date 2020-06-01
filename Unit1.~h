@@ -30,6 +30,9 @@ __published:	// IDE-managed Components
         void __fastcall Edit1Change(TObject *Sender);
         void __fastcall Button4Click(TObject *Sender);
         void __fastcall Button6Click(TObject *Sender);
+        void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+        void __fastcall Button2Click(TObject *Sender);
+        void __fastcall ListBox1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
         __fastcall TForm1(TComponent* Owner);

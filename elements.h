@@ -31,6 +31,7 @@ class Issue
         int get_year();
         int get_pages();
         string get_publisher();
+        void change_status();
         bool get_is_available();
         virtual string get_info() = 0;
         virtual int get_number() = 0;

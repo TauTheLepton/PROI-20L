@@ -199,10 +199,7 @@ string Book::get_info()
     ss<<"Autor: "<<this->get_name()<<" "<<this->get_surname()<<"\n";
     ss<<"Rok wydania: "<<this->get_year()<<"\n";
     ss<<"Wydawca: "<<this->get_publisher()<<"\n";
-    ss<<"Liczba stron: "<<this->get_pages()<<"\n";
-
-    string status = this->get_is_available()?"Dostepny":"Wypozyczony";
-    ss<<"Status: "<<status;
+    ss<<"Liczba stron: "<<this->get_pages();
 
     return ss.str();
 }
@@ -216,10 +213,7 @@ string Audiobook::get_info()
     ss<<"Rok wydania: "<<this->get_year()<<"\n";
     ss<<"Wydawca: "<<this->get_publisher()<<"\n";
     ss<<"Format: "<<this->get_format()<<"\n";
-    ss<<"Dlugosc w minutach: "<<this->get_pages()<<"\n";
-
-    string status = this->get_is_available()?"Dostepny":"Wypozyczony";
-    ss<<"Status: "<<status;
+    ss<<"Dlugosc w minutach: "<<this->get_pages();
 
     return ss.str();
 }
@@ -233,10 +227,7 @@ string Magazine::get_info()
     ss<<"Rok wydania: "<<this->get_year()<<"\n";
     ss<<"Numer: "<<this->get_number()<<"\n";
     ss<<"Wydawca: "<<this->get_publisher()<<"\n";
-    ss<<"Liczba stron: "<<this->get_pages()<<"\n";
-
-    string status = this->get_is_available()?"Dostepny":"Wypozyczony";
-    ss<<"Status: "<<status;
+    ss<<"Liczba stron: "<<this->get_pages();
 
     return ss.str();
 }
@@ -250,7 +241,7 @@ string ScientificWork::get_info()
     ss<<"Dziedzina naukowa: "<<this->get_discipline()<<"\n";
     ss<<"Rok wydania: "<<this->get_year()<<"\n";
     ss<<"Wydawca: "<<this->get_publisher()<<"\n";
-    ss<<"Liczba stron: "<<this->get_pages()<<"\n";
+    ss<<"Liczba stron: "<<this->get_pages();
 
     string status = this->get_is_available()?"Dostepny":"Wypozyczony";
     ss<<"Status: "<<status;
