@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 643
-  Top = 343
+  Left = 489
+  Top = 288
   Width = 964
   Height = 679
   Caption = 'Form1'
@@ -11,6 +11,7 @@ object Form1: TForm1
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  Scaled = False
   Visible = True
   OnClose = FormClose
   PixelsPerInch = 96
@@ -62,7 +63,7 @@ object Form1: TForm1
     OnClick = Button2Click
   end
   object Button4: TButton
-    Left = 512
+    Left = 520
     Top = 496
     Width = 75
     Height = 25
@@ -79,9 +80,9 @@ object Form1: TForm1
     OnChange = Edit1Change
   end
   object ListBox1: TListBox
-    Left = 496
+    Left = 488
     Top = 104
-    Width = 353
+    Width = 361
     Height = 353
     ItemHeight = 13
     TabOrder = 7
@@ -104,5 +105,23 @@ object Form1: TForm1
     Caption = 'Ostatnia operacja'
     TabOrder = 9
     OnClick = Button6Click
+  end
+  object Button7: TButton
+    Left = 584
+    Top = 544
+    Width = 177
+    Height = 57
+    Caption = 'Dodaj egzemplarz'
+    TabOrder = 10
+    OnClick = Button7Click
+  end
+  object Button8: TButton
+    Left = 280
+    Top = 552
+    Width = 201
+    Height = 57
+    Caption = 'Wyswietl ca'#322#261' histori'#281
+    TabOrder = 11
+    OnClick = Button8Click
   end
 end

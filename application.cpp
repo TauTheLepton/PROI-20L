@@ -483,3 +483,28 @@ string OperationStack::pull()
     }
 }
 
+vector<string> OperationStack::read()
+{
+    vector<string> output = this->operations;
+
+    this->operations.clear();
+
+    return output;
+}
+
+string report_creator(int type, string message, int issue_id, string parameter_1, string parameter_2)
+{
+    ostringstream ss;
+
+    if(type == 1)
+    {
+        ss<<message<<" "<<issue_id;
+    }
+
+    else if(type == 2)
+    {
+        ss<<message<<" "<<parameter_1<<", "<<parameter_2;
+    }
+
+    return ss.str();
+}
