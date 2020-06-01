@@ -1,28 +1,33 @@
 //---------------------------------------------------------------------------
 
-#ifndef Unit2H
-#define Unit2H
+#ifndef Unit3H
+#define Unit3H
 //---------------------------------------------------------------------------
 #include <Classes.hpp>
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
-#include <vector>
-#include <string>
+#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
-class TForm2 : public TForm
+class TForm3 : public TForm
 {
 __published:	// IDE-managed Components
-        TLabel *Label1;
-        void __fastcall FormShow(TObject *Sender);
+        TLabeledEdit *LabeledEdit1;
+        TLabeledEdit *LabeledEdit2;
+        TLabeledEdit *LabeledEdit3;
+        TLabeledEdit *LabeledEdit4;
+        TLabeledEdit *LabeledEdit5;
+        TLabeledEdit *LabeledEdit6;
+        TLabeledEdit *LabeledEdit7;
+        TLabeledEdit *LabeledEdit8;
+        TLabeledEdit *LabeledEdit9;
+        TLabeledEdit *LabeledEdit10;
+        TButton *Button1;
 private:	// User declarations
-
 public:		// User declarations
-        __fastcall TForm2(TComponent* Owner);
-        AnsiString show;
-
+        __fastcall TForm3(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TForm2 *Form2;
+extern PACKAGE TForm3 *Form3;
 //---------------------------------------------------------------------------
 #endif

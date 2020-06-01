@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 288
   Width = 964
   Height = 679
-  Caption = 'Form1'
+  Caption = 'Biblioteka Pot'#281#380'na'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

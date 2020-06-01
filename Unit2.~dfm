@@ -15,10 +15,10 @@ object Form2: TForm2
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 0
-    Top = 32
-    Width = 369
-    Height = 553
+    Left = 64
+    Top = 104
+    Width = 65
+    Height = 17
     Caption = 'Label1'
   end
 end
