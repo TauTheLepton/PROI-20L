@@ -31,6 +31,7 @@ class Library
         vector<Issue*> search_by_discipline(string);
         vector<Issue*> search_by_format(string);
         vector<Issue*> getIssues();
+        bool is_unique_id(int);     ///zwraca true jak jest unikatowe, czyli nic innego na liscie nie ma takiego id
         //vector<Issue*> getLastResults();
         //void assign_results(vector<Issue*>);
         ///jest szukanie po kazdej rzeczy standardowej, teraz trzeba special
