@@ -18,7 +18,10 @@ int main()
 
     Book f(1,"d","d","d",4,2,"dsad", false);
     Issue* d = &f;
-
+    cout<<lib->is_unique_id(2137)<<endl;
+    cout<<lib->is_unique_id(66622)<<endl;
+    cout<<lib->is_unique_id(6662)<<endl;
+    cout<<lib->is_unique_id(5)<<endl;
     lib->save_to_file();
 
     return 0;

@@ -193,7 +193,8 @@ void Library::save_to_file()
     {
         ///z pomoca funkcji typeid() sprawdzam typ kazdego z egzemplarzy
 
-        if((string)typeid(*issues[i]).name()=="Audiobook")
+        // if((string)typeid(*issues[i]).name()=="Audiobook")
+        if(((string)typeid(*issues[i]).name()).find("Audiobook")!= string::npos)
         {
             save_file<<"Audiobook\n";
             int t1 = issues[i]->get_id();
@@ -209,7 +210,8 @@ void Library::save_to_file()
 
         }
 
-        else if((string)typeid(*issues[i]).name()=="Book")
+        // else if((string)typeid(*issues[i]).name()=="Book")
+        else if(((string)typeid(*issues[i]).name()).find("Book")!= string::npos)
         {
             save_file<<"Book\n";
             int t1 = issues[i]->get_id();
@@ -223,7 +225,8 @@ void Library::save_to_file()
             save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<"\n";
         }
 
-        else if((string)typeid(*issues[i]).name()=="Magazine")
+        // else if((string)typeid(*issues[i]).name()=="Magazine")
+        else if(((string)typeid(*issues[i]).name()).find("Magazine")!= string::npos)
         {
             save_file<<"Magazine\n";
             int t1 = issues[i]->get_id();
@@ -238,7 +241,8 @@ void Library::save_to_file()
             save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<","<<t9<<"\n";
         }
 
-        else if((string)typeid(*issues[i]).name()=="ScientificWork")
+        // else if((string)typeid(*issues[i]).name()=="ScientificWork")
+        else if(((string)typeid(*issues[i]).name()).find("ScientificWork")!= string::npos)
         {
             save_file<<"ScientificWork\n";
             int t1 = issues[i]->get_id();
@@ -443,6 +447,19 @@ Library* Library::getInstance()
     }
 
     return instance;
+}
+
+bool Library::is_unique_id(int id)      ///zrobic to
+{
+    bool result = true;
+    for(int i=0; i<issues.size(); i++)
+    {
+        if(issues[i]->get_id() == id)
+        {
+            result=false;
+        }
+    }
+    return result;
 }
 
 void OperationStack::push(string n)
