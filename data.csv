@@ -1,0 +1,16 @@
+Book
+2137,Ferdydurke,Witold,Gombrowicz,1937,200,wydawca_1
+Audiobook
+1234,Smierc na Nilu,Agatha,Christie,1937,150,wydawca_2,mp3
+Magazine
+6969,Fantastyka,Imie,Nazwisko,2020,30,wydawca_3,7
+ScientificWork
+666,Quantum mechanics,Scientist_name1,Scientist_surname1,2022,50,scientisc_publisher_1,Physics
+Book
+1,nazwa1,imie1,nazwisko1,1,1,wydawca1
+Audiobook
+2,nazwa2,imie2,nazwisko2,2,2,wydawca2,format2
+Magazine
+3,nazwa3,imie3,nazwisko3,3,3,wydawca3,3
+ScientificWork
+6662,Oxygen in space,Scientist_name2,Scientist_surname2,20222,502,scientisc_publisher_2,Chemistry
