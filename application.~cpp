@@ -209,7 +209,7 @@ void Library::save_to_file()
 
         }
 
-        else if((string)typeid(*issues[i]).name()=="Book")
+        else if((string)typeid(*issues[i]).name()=="4Book")
         {
             save_file<<"Book\n";
             int t1 = issues[i]->get_id();
@@ -223,7 +223,7 @@ void Library::save_to_file()
             save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<"\n";
         }
 
-        else if((string)typeid(*issues[i]).name()=="Magazine")
+        else if((string)typeid(*issues[i]).name()=="8Magazine")
         {
             save_file<<"Magazine\n";
             int t1 = issues[i]->get_id();
@@ -238,7 +238,7 @@ void Library::save_to_file()
             save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<","<<t9<<"\n";
         }
 
-        else if((string)typeid(*issues[i]).name()=="ScientificWork")
+        else if((string)typeid(*issues[i]).name()=="14ScientificWork")
         {
             save_file<<"ScientificWork\n";
             int t1 = issues[i]->get_id();

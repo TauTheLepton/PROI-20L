@@ -91,7 +91,7 @@ class Audiobook:public Issue
     private:
         string format;
     public:
-        Audiobook(int, string, string, string, int, int, string, string);
+        Audiobook(int, string, string, string, int, int, string, string, bool);
         ~Audiobook();
         void showProperties();
         int get_number();
