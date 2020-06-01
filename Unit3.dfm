@@ -1,6 +1,6 @@
 object Form3: TForm3
-  Left = 503
-  Top = 321
+  Left = 155
+  Top = 192
   Width = 531
   Height = 574
   Caption = 'Dodaj egzemplarz'
@@ -150,6 +150,7 @@ object Form3: TForm3
     Height = 113
     Caption = 'Dodaj do biblioteki'
     TabOrder = 10
+    OnClick = Button1Click
   end
   object ComboBox1: TComboBox
     Left = 288

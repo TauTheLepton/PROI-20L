@@ -445,6 +445,22 @@ Library* Library::getInstance()
     return instance;
 }
 
+bool Library::is_unique_id(int id)      ///zrobic to
+{
+    bool result = true;
+    for(int i=0; i<issues.size(); i++)
+    {
+        if(issues[i]->get_id() == id)
+        {
+            result=false;
+        }
+    }
+    return result;
+}
+
+
+vector<string> OperationStack::operations;
+
 void OperationStack::push(string n)
 {
     operations.push_back(n);

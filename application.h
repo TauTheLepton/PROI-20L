@@ -30,6 +30,7 @@ class Library
         vector<Issue*> search_by_discipline(string);
         vector<Issue*> search_by_format(string);
         vector<Issue*> getIssues();
+        bool is_unique_id(int);     ///zwraca true jak jest unikatowe, czyli nic innego na liscie nie ma takiego id
         ///jest szukanie po kazdej rzeczy standardowej, teraz trzeba special
 
     public:
@@ -45,12 +46,14 @@ class OperationStack
 {
     ///klasa odpowiedzialna za zapisywanie danych o operacjach wykonanych w programie
     private:
-        vector<string> operations;
+        static vector<string> operations;
     public:
         void push(string);
         string pull();
         vector<string> read();
 };
+
+vector<string> OperationStack::operations; ///inicjalizacja statycznego wektora
 
 ///funkcja pomocnicza stworzona z mysla o OperationStack
 ///type - rodzaj operacji
