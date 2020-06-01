@@ -45,7 +45,7 @@ class Book:public Issue
 {
     ///Klasa reprezentujaca ksiazke
     public:
-        Book(int, string, string, string, int, int, string);
+        Book(int, string, string, string, int, int, string, bool);
         ~Book();
         void showProperties();
         int get_number();
@@ -60,7 +60,7 @@ class Magazine:public Issue
     private:
         int number; /// zmienna oznaczajaca numer czasopisma
     public:
-        Magazine(int, string, string, string, int, int, string, int);
+        Magazine(int, string, string, string, int, int, string, int, bool);
         ~Magazine();
         void showProperties();
         int get_number();
@@ -75,7 +75,7 @@ class ScientificWork:public Issue
     private:
         string discipline;
     public:
-        ScientificWork(int, string, string, string, int, int, string, string);
+        ScientificWork(int, string, string, string, int, int, string, string, bool);
         ~ScientificWork();
         void showProperties();
         int get_number();
@@ -91,7 +91,7 @@ class Audiobook:public Issue
     private:
         string format;
     public:
-        Audiobook(int, string, string, string, int, int, string, string);
+        Audiobook(int, string, string, string, int, int, string, string, bool);
         ~Audiobook();
         void showProperties();
         int get_number();
