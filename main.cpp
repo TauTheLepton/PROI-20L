@@ -11,7 +11,15 @@ int main()
     ///to tak tylko do testowania
     Library* lib = Library::getInstance();
 
-    lib->read_from_file();
+    try
+    {
+        lib->read_from_file();
+    }
+    catch(int x)
+    {
+        cout<<"Error: "<<x<<endl;
+    }
+
     lib->showAssets();
 
     vector<Issue*> tak = lib->search_by_discipline("Chemistry");

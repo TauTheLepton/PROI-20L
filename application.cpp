@@ -62,8 +62,11 @@ void Library::read_from_file()
     int special_int;
     string status;
     bool status_bool;
-
     Issue* temp2;
+    if(dataFile.fail())
+    {
+        throw 5;
+    }
     while(dataFile.good())
     {
         getline(dataFile,type,'\n');
@@ -90,6 +93,22 @@ void Library::read_from_file()
             else if(status == "false")
             {
                 status_bool = false;
+            }
+            else    ///exceptions
+            {
+                throw 0;
+            }
+            if(id_number_int < 1)
+            {
+                throw 1;
+            }
+            if(year_int < 1)
+            {
+                throw 2;
+            }
+            if(pages_int < 1)
+            {
+                throw 3;
             }
             Book* b = new Book(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, status_bool);
             this->add_to_library(b);
@@ -118,6 +137,22 @@ void Library::read_from_file()
             else if(status == "false")
             {
                 status_bool = false;
+            }
+            else    ///exceptions
+            {
+                throw 0;
+            }
+            if(id_number_int < 1)
+            {
+                throw 1;
+            }
+            if(year_int < 1)
+            {
+                throw 2;
+            }
+            if(pages_int < 1)
+            {
+                throw 3;
             }
             Audiobook* a = new Audiobook(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special, status_bool);
             this->add_to_library(a);
@@ -149,6 +184,26 @@ void Library::read_from_file()
             {
                 status_bool = false;
             }
+            else    ///exceptions
+            {
+                throw 0;
+            }
+            if(id_number_int < 1)
+            {
+                throw 1;
+            }
+            if(year_int < 1)
+            {
+                throw 2;
+            }
+            if(pages_int < 1)
+            {
+                throw 3;
+            }
+            if(special_int < 1)
+            {
+                throw 4;
+            }
             Magazine* m = new Magazine(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special_int, status_bool);
             this->add_to_library(m);
         }
@@ -176,6 +231,22 @@ void Library::read_from_file()
             else if(status == "false")
             {
                 status_bool = false;
+            }
+            else    ///exceptions
+            {
+                throw 0;
+            }
+            if(id_number_int < 1)
+            {
+                throw 1;
+            }
+            if(year_int < 1)
+            {
+                throw 2;
+            }
+            if(pages_int < 1)
+            {
+                throw 3;
             }
             ScientificWork* a = new ScientificWork(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special, status_bool);
             this->add_to_library(a);
