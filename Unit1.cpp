@@ -4,6 +4,7 @@
 #pragma hdrstop
 
 #include "Unit1.h"
+#include "Unit2.h"
 #include <vector>
 #include "application.h"
 #include "elements.h"
@@ -19,10 +20,9 @@ OperationStack stack;
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
 {
-        //
+        /// Inicjuje okno oraz wczytuje dane
         Library* g = Library::getInstance();
         g->read_from_file();
-        
 
         stack.push("Wczytano dane z pliku");
 
@@ -99,6 +99,8 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
 {
         Library* g  = Library::getInstance();
 
+        stack.push("Pokazano wszystkie rekordy");
+
         ListBox1->Clear();
 
         vector <Issue*> issues = g->getIssues();
@@ -122,6 +124,14 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         int t = ComboBox1->ItemIndex; ///w tej zmiennej zapisuje ktora opcje
                                       ///wybralem w pierwszym checkboxie
         int p = ComboBox2->ItemIndex; ///analogicznie jak w pierwszym przypadku
+
+        string message = "Wyszukiwano rekordow z kategorii: ";
+        string element_1 =  ComboBox1->Text.c_str();
+        string element_2 =  ComboBox2->Text.c_str();
+
+        string report = report_creator(2,message,0,element_1,element_2);
+
+        stack.push(report);
 
         if(t == 0)
         {
@@ -294,6 +304,11 @@ void __fastcall TForm1::Button4Click(TObject *Sender)
         int a = ListBox1->ItemIndex;
         ShowMessage(Form1->res[a]->get_info().c_str());
 
+        string message = "Wyswietlono informacje o egzemplarzu o sygnaturze";
+        string report = report_creator(1, message, Form1->res[a]->get_id());
+
+        stack.push(report);
+
 }
 //---------------------------------------------------------------------------
 
@@ -301,7 +316,9 @@ void __fastcall TForm1::Button4Click(TObject *Sender)
 
 void __fastcall TForm1::Button6Click(TObject *Sender)
 {
-        ShowMessage(stack.pull().c_str());        
+        ///przycisk pokazujacy ostatnia operacje
+
+        ShowMessage(stack.pull().c_str());
 }
 //---------------------------------------------------------------------------
 
@@ -315,13 +332,31 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action)
 
 void __fastcall TForm1::Button2Click(TObject *Sender)
 {
+        /// przycisk, ktorym wypozyczamy/zwracamy ksiazke
+
         Library* g = Library::getInstance();
 
         int a = ListBox1->ItemIndex;
 
         Form1->res[a]->change_status();
         bool status = Form1->res[a]->get_is_available();
-        Button2->Caption = status?"Wypozycz":"Zwroc";        
+
+        Button2->Caption = status?"Wypozycz":"Zwroc";
+
+        string message;
+
+        if(status == false)
+        {
+                message = "Wypozyczono egzemplarz o sygnaturze:";
+        }
+        else
+        {
+                message = "Oddano egzemplarz o sygnaturze:";
+        }
+
+        string report = report_creator(1,message,Form1->res[a]->get_id());
+        stack.push(report);
+
 }
 //---------------------------------------------------------------------------
 
@@ -331,6 +366,36 @@ void __fastcall TForm1::ListBox1Click(TObject *Sender)
         int a = ListBox1->ItemIndex;
         bool status = Form1->res[a]->get_is_available();
         Button2->Caption = status?"Wypozycz":"Zwroc";
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::Button7Click(TObject *Sender)
+{
+        /// przycisk do wyswietlania kreatora egzemplarza
+
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button8Click(TObject *Sender)
+{
+        /// przycisk do wyswietlania historii operacji
+
+        vector<string> reports = stack.read();
+
+        AnsiString ehhh;
+
+        ///Nie jestem dumny z tego rozwiazania, ale to byla jedyna mozliwosc
+        for(int i=0;i<reports.size();i++)
+        {
+                ehhh += (reports[i]+"\n").c_str();
+        }
+
+        Form2->show = ehhh;
+
+        Form2->ShowModal();
 }
 //---------------------------------------------------------------------------
 

@@ -16,8 +16,7 @@ class Library
         vector<Issue*> issues;
         Library(); ///blokuje konstruktor klasy, aby upewnic sie,
             /// ze istniec bedzie tylko jedna instancja klasy Library
-    public:
-        vector<Issue*> last_results;                                 ///tymczasowo publiczne do testowania
+    public:                             ///tymczasowo publiczne do testowania
         void read_from_file(); ///czyta zawartosc pliku data.csv i zapisuje ja do vektora issues
         void save_to_file();
         vector<Issue*> search_by_name(string);  ///szuka po imieniu, skladowa szukania ogolnego
@@ -31,8 +30,6 @@ class Library
         vector<Issue*> search_by_discipline(string);
         vector<Issue*> search_by_format(string);
         vector<Issue*> getIssues();
-        //vector<Issue*> getLastResults();
-        //void assign_results(vector<Issue*>);
         ///jest szukanie po kazdej rzeczy standardowej, teraz trzeba special
 
     public:
@@ -54,5 +51,12 @@ class OperationStack
         string pull();
         vector<string> read();
 };
+
+///funkcja pomocnicza stworzona z mysla o OperationStack
+///type - rodzaj operacji
+///message - tekst, ktory opisuje zapisana akcje
+///issue_id - numer id rekordu, na ktorym zostala wykonana operacja
+///parameter_1, parameter_2 - inne dane
+string report_creator(int type, string message, int issue_id, string parameter_1="", string parameter_2="");
 
 #endif // APPLICATION_H_INCLUDED

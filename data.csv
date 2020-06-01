@@ -15,8 +15,8 @@ Audiobook
 Magazine
 3,nazwa3,imie3,nazwisko3,3,3,wydawca3,3,true
 ScientificWork
-6662,Oxygen in space,Scientist_name2,Scientist_surname2,20222,502,scientisc_publisher_2,Chemistry,false
+6662,Oxygen in space,Scientist_name2,Scientist_surname2,20222,502,scientisc_publisher_2,Chemistry,true
 ScientificWork
-5,fg,ff,dsfS,2,7,sdfsdf,sdf,true
+5,fg,ff,dsfS,2,7,sdfsdf,sdf,false
 ScientificWork
 5,ff,ff,dsfS,2,7,sdfsdf,sdf,true

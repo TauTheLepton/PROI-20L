@@ -209,7 +209,7 @@ void Library::save_to_file()
 
         }
 
-        else if((string)typeid(*issues[i]).name()=="4Book")
+        else if((string)typeid(*issues[i]).name()=="Book")
         {
             save_file<<"Book\n";
             int t1 = issues[i]->get_id();
@@ -223,7 +223,7 @@ void Library::save_to_file()
             save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<"\n";
         }
 
-        else if((string)typeid(*issues[i]).name()=="8Magazine")
+        else if((string)typeid(*issues[i]).name()=="Magazine")
         {
             save_file<<"Magazine\n";
             int t1 = issues[i]->get_id();
@@ -238,7 +238,7 @@ void Library::save_to_file()
             save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<","<<t9<<"\n";
         }
 
-        else if((string)typeid(*issues[i]).name()=="14ScientificWork")
+        else if((string)typeid(*issues[i]).name()=="ScientificWork")
         {
             save_file<<"ScientificWork\n";
             int t1 = issues[i]->get_id();
@@ -466,3 +466,19 @@ string OperationStack::pull()
     }
 }
 
+string report_creator(int type, string message, int issue_id, string parameter_1, string parameter_2)
+{
+    ostringstream ss;
+
+    else if(type == 1)
+    {
+        ss<<message<<" "<<issue_id;
+    }
+
+    else if(type == 2)
+    {
+        ss<<message<<" "<<parameter_1<<", "<<parameter_2;
+    }
+
+    return ss.str();
+}
