@@ -533,6 +533,25 @@ bool Library::is_unique_id(int id)      ///zrobic to
     return result;
 }
 
+bool Library::delete_id(int id)
+{
+    bool status=false;
+    vector<Issue*> results;
+    for(int i=0; i<issues.size(); i++)
+    {
+        if(issues[i]->get_id() == id)
+        {
+            status=true;
+        }
+        else
+        {
+            results.push_back(issues[i]);
+        }
+    }
+    issues = results;
+    return status;
+}
+
 void OperationStack::push(string n)
 {
     operations.push_back(n);

@@ -32,6 +32,7 @@ class Library
         vector<Issue*> search_by_format(string);
         vector<Issue*> getIssues();
         bool is_unique_id(int);     ///zwraca true jak jest unikatowe, czyli nic innego na liscie nie ma takiego id
+        bool delete_id(int);  ///usuwa  obiekt(y)? o podanym id, zwraca bool (true jak cos usunal, false jak nic nie usunal)
         //vector<Issue*> getLastResults();
         //void assign_results(vector<Issue*>);
         ///jest szukanie po kazdej rzeczy standardowej, teraz trzeba special
