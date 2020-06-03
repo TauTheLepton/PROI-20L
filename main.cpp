@@ -47,7 +47,7 @@ int main()
     // cout<<lib->is_unique_id(6662)<<endl;
     // cout<<lib->is_unique_id(5)<<endl;
     lib->save_to_file(file);
-    lib->clear();
+    //lib->clear();
 
     Test t1;
     t1.book();

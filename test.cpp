@@ -10,6 +10,7 @@ using namespace std;
 void make_library()
 {
     Library* lib = Library::getInstance();
+    lib->clear();
     Book* b = new Book(1, "title_1", "name_1", "surname_1", 2001, 101, "publisher_1", true);
     lib->add_to_library(b);
     Audiobook* a = new Audiobook(2, "title_2", "name_2", "surname_2", 2002, 102, "publisher_2", "format", true);
@@ -87,6 +88,7 @@ void Test::scientific_work()
 void Test::issues()
 {
     Library* lib = Library::getInstance();
+    lib->clear();
     Book* b1 = new Book(1, "title_3", "name_1", "surname_1", 2001, 101, "publisher_1", true);
     Audiobook* a1 = new Audiobook(2, "title_1", "name_1", "surname_1", 2001, 101, "publisher_1", "format", true);
     lib->add_to_library(b1);
@@ -104,7 +106,6 @@ void Test::write_read()
     char* file="test_data.csv";
     make_library();
     Library* lib = Library::getInstance();
-    
     lib->save_to_file(file);
     lib->clear();
     lib->read_from_file(file);
