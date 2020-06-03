@@ -43,10 +43,10 @@ void Library::add_to_library(Issue* is)
     issues.push_back(is);
 }
 
-void Library::read_from_file()
+void Library::read_from_file(const char* file_name)
 {
     ifstream dataFile;
-    dataFile.open("data.csv");
+    dataFile.open(file_name);
     string type;        ///zmienna do ktorej czytany jest typ kolejnego obiektu z pliku
     string id_number;
     int id_number_int;
@@ -255,10 +255,10 @@ void Library::read_from_file()
     dataFile.close();
 }
 
-void Library::save_to_file()
+void Library::save_to_file(const char* file_name)
 {
     ofstream save_file;
-    save_file.open("data.csv", ios::out);
+    save_file.open(file_name, ios::out);
 
     for (int i=0; i<issues.size(); i++)
     {
@@ -507,6 +507,10 @@ vector<Issue*> Library::getIssues()
     return issues;
 }
 
+void Library::clear()
+{
+    issues.clear();
+}
 
 Library* Library::instance = 0;
 
@@ -551,6 +555,8 @@ bool Library::delete_id(int id)
     issues = results;
     return status;
 }
+
+vector<string> OperationStack::operations;
 
 void OperationStack::push(string n)
 {

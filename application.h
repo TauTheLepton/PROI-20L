@@ -4,7 +4,6 @@
 #include <vector>
 #include "elements.h"
 
-
 using namespace std;
 
 class Library
@@ -17,8 +16,8 @@ class Library
         Library(); ///blokuje konstruktor klasy, aby upewnic sie,
             /// ze istniec bedzie tylko jedna instancja klasy Library
     public:                             ///tymczasowo publiczne do testowania
-        void read_from_file(); ///czyta zawartosc pliku data.csv i zapisuje ja do vektora issues
-        void save_to_file();
+        void read_from_file(const char*); ///czyta zawartosc pliku data.csv i zapisuje ja do vektora issues
+        void save_to_file(const char*);
         vector<Issue*> search_by_name(string);  ///szuka po imieniu, skladowa szukania ogolnego
         vector<Issue*> search_by_surname(string);
         vector<Issue*> search_by_id(int);
@@ -30,6 +29,7 @@ class Library
         vector<Issue*> search_by_discipline(string);
         vector<Issue*> search_by_format(string);
         vector<Issue*> getIssues();
+        void clear();
         bool is_unique_id(int);     ///zwraca true jak jest unikatowe, czyli nic innego na liscie nie ma takiego id
         bool delete_id(int);  ///usuwa  obiekt(y)? o podanym id, zwraca bool (true jak cos usunal, false jak nic nie usunal)
         //vector<Issue*> getLastResults();
@@ -56,7 +56,7 @@ class OperationStack
         vector<string> read();
 };
 
-vector<string> OperationStack::operations; ///inicjalizacja statycznego wektora
+// vector<string> OperationStack::operations; ///inicjalizacja statycznego wektora
 
 ///funkcja pomocnicza stworzona z mysla o OperationStack
 ///type - rodzaj operacji
