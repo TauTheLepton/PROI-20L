@@ -45,6 +45,11 @@ void Library::add_to_library(Issue* is)
     issues.push_back(is);
 }
 
+void Library::clear()
+{
+    issues.clear();
+}
+
 void Library::read_from_file(const char* file_name)
 {
     ifstream dataFile;
