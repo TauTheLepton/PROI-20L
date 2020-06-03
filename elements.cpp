@@ -191,10 +191,20 @@ string ScientificWork::get_format()
     return i;
 }
 
-string Book::get_info()
+string Book::get_caption()
 {
     ostringstream ss;
 
+    ss<<this->title<<"; "<<this->authorName[0]<<". "<<this->authorSurname<<"; "<<this->year;
+
+    return ss.str();
+}
+
+string Book::get_info()
+{
+    ostringstream ss;
+    ss<<"Typ egzemplarza: ksiazka"<<"\n";
+    ss<<"Numer sygnatury: "<<this->get_id()<<"\n";
     ss<<"Tytul: "<<this->get_title()<<"\n";
     ss<<"Autor: "<<this->get_name()<<" "<<this->get_surname()<<"\n";
     ss<<"Rok wydania: "<<this->get_year()<<"\n";
@@ -210,7 +220,8 @@ string Book::get_info()
 string Audiobook::get_info()
 {
     ostringstream ss;
-
+    ss<<"Typ egzemplarza: audiobook"<<"\n";
+    ss<<"Numer sygnatury: "<<this->get_id()<<"\n";
     ss<<"Tytul: "<<this->get_title()<<"\n";
     ss<<"Autor: "<<this->get_name()<<" "<<this->get_surname()<<"\n";
     ss<<"Rok wydania: "<<this->get_year()<<"\n";
@@ -224,10 +235,21 @@ string Audiobook::get_info()
     return ss.str();
 }
 
+string Audiobook::get_caption()
+{
+    ostringstream ss;
+
+    ss<<this->title<<"; "<<this->authorName[0]<<". "<<this->authorSurname<<"; "<<this->year;
+
+    return ss.str();
+}
+
 string Magazine::get_info()
 {
     ostringstream ss;
 
+    ss<<"Typ egzemplarza: czasopismo"<<"\n";
+    ss<<"Numer sygnatury: "<<this->get_id()<<"\n";
     ss<<"Tytul: "<<this->get_title()<<"\n";
     ss<<"Autor: "<<this->get_name()<<" "<<this->get_surname()<<"\n";
     ss<<"Rok wydania: "<<this->get_year()<<"\n";
@@ -241,10 +263,27 @@ string Magazine::get_info()
     return ss.str();
 }
 
+string Magazine::get_caption()
+{
+    ostringstream ss;
+
+    ss<<this->title<<"; "<<this->authorName[0]<<". "<<this->authorSurname<<"; ";
+    if(number<10)
+    {
+        ss<<0;
+    }
+    ss<<this->number<<"/"<<this->year;
+
+    return ss.str();
+}
+
 string ScientificWork::get_info()
 {
     ostringstream ss;
 
+
+    ss<<"Typ egzemplarza: ksiazka"<<"\n";
+    ss<<"Numer sygnatury: "<<this->get_id()<<"\n";
     ss<<"Tytul: "<<this->get_title()<<"\n";
     ss<<"Autor: "<<this->get_name()<<" "<<this->get_surname()<<"\n";
     ss<<"Dziedzina naukowa: "<<this->get_discipline()<<"\n";
@@ -254,6 +293,15 @@ string ScientificWork::get_info()
 
     string status = this->get_is_available()?"Dostepny":"Wypozyczony";
     ss<<"Status: "<<status;
+
+    return ss.str();
+}
+
+string ScientificWork::get_caption()
+{
+    ostringstream ss;
+
+    ss<<this->title<<"; "<<this->authorName[0]<<". "<<this->authorSurname<<"; "<<this->discipline<<";"<<this->year;
 
     return ss.str();
 }

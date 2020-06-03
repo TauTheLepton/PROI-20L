@@ -7,18 +7,15 @@
 
 using namespace std;
 
-class Test
-{
-    public:
-        void book();
-        void audiobook();
-        void magazine();
-        void scientific_work();
-        void issues();
-        void write_read();
-        void search();
-        void unique();
-        void id();
-};
+
+void book();
+void audiobook();
+void magazine();
+void scientific_work();
+void issues();
+void write_read();
+void _search();
+void _unique();
+void id();
 
 #endif // TEST_H_INCLUDED

@@ -21,7 +21,7 @@ void make_library()
     lib->add_to_library(s);
 }
 
-void Test::book()
+void book()
 {
     Book a(1, "title_1", "name_1", "surname_1", 2001, 101, "publisher_1", true);
     assert(a.get_id() == 1);
@@ -37,7 +37,7 @@ void Test::book()
     assert(a.get_is_available() == true);
 }
 
-void Test::audiobook()
+void audiobook()
 {
     Audiobook a(1, "title_1", "name_1", "surname_1", 2001, 101, "publisher_1", "format", true);
     assert(a.get_id() == 1);
@@ -53,7 +53,7 @@ void Test::audiobook()
     assert(a.get_is_available() == true);
 }
 
-void Test::magazine()
+void magazine()
 {
     Magazine a(1, "title_1", "name_1", "surname_1", 2001, 101, "publisher_1", 11, true);
     assert(a.get_id() == 1);
@@ -69,7 +69,7 @@ void Test::magazine()
     assert(a.get_is_available() == true);
 }
 
-void Test::scientific_work()
+void scientific_work()
 {
     ScientificWork a(1, "title_1", "name_1", "surname_1", 2001, 101, "publisher_1", "discipline", true);
     assert(a.get_id() == 1);
@@ -85,7 +85,7 @@ void Test::scientific_work()
     assert(a.get_is_available() == true);
 }
 
-void Test::issues()
+void issues()
 {
     Library* lib = Library::getInstance();
     lib->clear();
@@ -101,7 +101,7 @@ void Test::issues()
     lib->clear();
 }
 
-void Test::write_read()
+void write_read()
 {
     char* file="test_data.csv";
     make_library();
@@ -118,7 +118,7 @@ void Test::write_read()
     delete file;
 }
 
-void Test::search()
+void _search()
 {
     make_library();
     Library* lib = Library::getInstance();
@@ -146,7 +146,7 @@ void Test::search()
     lib->clear();
 }
 
-void Test::unique()
+void _unique()
 {
     make_library();
     Library* lib = Library::getInstance();
@@ -155,7 +155,7 @@ void Test::unique()
     lib->clear();
 }
 
-void Test::id()
+void id()
 {
     make_library();
     Library* lib = Library::getInstance();

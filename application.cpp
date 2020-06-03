@@ -9,6 +9,8 @@
 
 using namespace std;
 
+vector<string> OperationStack::operations; ///inicjalizacja statycznego wektora
+
 Library::Library()
 {
 }
@@ -507,10 +509,6 @@ vector<Issue*> Library::getIssues()
     return issues;
 }
 
-void Library::clear()
-{
-    issues.clear();
-}
 
 Library* Library::instance = 0;
 
@@ -555,8 +553,6 @@ bool Library::delete_id(int id)
     issues = results;
     return status;
 }
-
-vector<string> OperationStack::operations;
 
 void OperationStack::push(string n)
 {

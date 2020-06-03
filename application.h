@@ -4,6 +4,7 @@
 #include <vector>
 #include "elements.h"
 
+
 using namespace std;
 
 class Library
@@ -29,7 +30,6 @@ class Library
         vector<Issue*> search_by_discipline(string);
         vector<Issue*> search_by_format(string);
         vector<Issue*> getIssues();
-        void clear();
         bool is_unique_id(int);     ///zwraca true jak jest unikatowe, czyli nic innego na liscie nie ma takiego id
         bool delete_id(int);  ///usuwa  obiekt(y)? o podanym id, zwraca bool (true jak cos usunal, false jak nic nie usunal)
         //vector<Issue*> getLastResults();
@@ -56,7 +56,7 @@ class OperationStack
         vector<string> read();
 };
 
-// vector<string> OperationStack::operations; ///inicjalizacja statycznego wektora
+
 
 ///funkcja pomocnicza stworzona z mysla o OperationStack
 ///type - rodzaj operacji

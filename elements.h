@@ -32,12 +32,13 @@ class Issue
         int get_pages();
         string get_publisher();
         void change_status();
-        bool get_is_available();
+        bool get_is_available(); ///funkcja sprawdzajaca dostepnosc ksiazki
         virtual string get_info() = 0;
         virtual int get_number() = 0;
         virtual string get_discipline() = 0;
         virtual string get_format() = 0;
         virtual void showProperties() = 0;
+        virtual string get_caption() = 0; ///funkcja zwracająca tekst, ktory bedzie reprezentowal rekord w wynikach wyszukiwania
 
 };
 
@@ -52,6 +53,7 @@ class Book:public Issue
         string get_discipline();
         string get_format();
         string get_info();
+        string get_caption();
 };
 
 class Magazine:public Issue
@@ -67,6 +69,7 @@ class Magazine:public Issue
         string get_discipline();
         string get_format();
         string get_info();
+        string get_caption();
 };
 
 class ScientificWork:public Issue
@@ -82,6 +85,7 @@ class ScientificWork:public Issue
         string get_discipline();
         string get_format();
         string get_info();
+        string get_caption();
 };
 
 class Audiobook:public Issue
@@ -98,6 +102,7 @@ class Audiobook:public Issue
         string get_discipline();
         string get_format();
         string get_info();
+        string get_caption();
 };
 
 

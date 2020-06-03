@@ -12,7 +12,7 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm3 *Form3;
-OperationStack stack;
+OperationStack stack3;
 //---------------------------------------------------------------------------
 
 bool is_num(AnsiString s)
@@ -107,10 +107,12 @@ void __fastcall TForm3::Button1Click(TObject *Sender)
                                 Book* b = new Book(id_,title.c_str(),name.c_str(),surname.c_str(),year_,pages_,publisher.c_str(),true);
                                 lib->add_to_library(b);
 
-                                string message = "Dodano do biblioteki egzemplarz o numerze: ";
+                                string message = "Dodano do biblioteki egzemplarz o sygnaturze: ";
                                 string report = report_creator(1, message, id_);
 
-                                stack.push(report);
+                                stack3.push(report);
+
+                                Form3->Close();
                         }
                         else
                         {
@@ -137,10 +139,10 @@ void __fastcall TForm3::Button1Click(TObject *Sender)
                                 Magazine* m = new Magazine(id_,title.c_str(),name.c_str(),surname.c_str(),year_,pages_,publisher.c_str(),number_,true);
                                 lib->add_to_library(m);
 
-                                string message = "Dodano do biblioteki egzemplarz o numerze: ";
+                                string message = "Dodano do biblioteki egzemplarz o sygnaturze: ";
                                 string report = report_creator(1, message, id_);
 
-                                stack.push(report);
+                                stack3.push(report);
 
                                 Form3->Close();
                         }
@@ -167,10 +169,10 @@ void __fastcall TForm3::Button1Click(TObject *Sender)
                                 ScientificWork* s = new ScientificWork(id_,title.c_str(),name.c_str(),surname.c_str(),year_,pages_,publisher.c_str(),discipline.c_str(),true);
                                 lib->add_to_library(s);
 
-                                string message = "Dodano do biblioteki egzemplarz o numerze: ";
+                                string message = "Dodano do biblioteki egzemplarz o sygnaturze: ";
                                 string report = report_creator(1, message, id_);
 
-                                stack.push(report);
+                                stack3.push(report);
 
                                 Form3->Close();
                         }
@@ -197,10 +199,10 @@ void __fastcall TForm3::Button1Click(TObject *Sender)
                                 Audiobook* au = new Audiobook(id_,title.c_str(),name.c_str(),surname.c_str(),year_,pages_,publisher.c_str(),format.c_str(),true);
                                 lib->add_to_library(au);
 
-                                string message = "Dodano do biblioteki egzemplarz o numerze: ";
+                                string message = "Dodano do biblioteki egzemplarz o sygnaturze: ";
                                 string report = report_creator(1, message, id_);
 
-                                stack.push(report);
+                                stack3.push(report);
 
                                 Form3->Close();
                         }
