@@ -47,6 +47,10 @@ void Library::add_to_library(Issue* is)
 
 void Library::clear()
 {
+    for(int i=0; i<issues.size(); i++)
+    {
+        delete issues[i];
+    }
     issues.clear();
 }
 
