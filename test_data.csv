@@ -1,0 +1,8 @@
+Book
+1,title_1,name_1,surname_1,2001,101,publisher_1,true
+Audiobook
+2,title_2,name_2,surname_2,2002,102,publisher_2,format,true
+Magazine
+3,title_3,name_3,surname_3,2003,103,publisher_3,13,true
+ScientificWork
+4,title_4,name_4,surname_4,2004,104,publisher_4,discipline,true
