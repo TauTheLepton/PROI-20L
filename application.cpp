@@ -277,7 +277,6 @@ void Library::read_from_file(const char* file_name)
             throw 6;
         }
     }
-
 }
 
 void Library::save_to_file(const char* file_name)

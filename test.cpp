@@ -174,6 +174,7 @@ void exception_7()
     ofstream save_file;
     save_file.open(file_name, ios::out);
     save_file<<"Audiobok\n";
+    save_file<<"1,nazwa2,imie2,nazwisko2,2,2,wydawca2,format2,true\n";
     save_file.close();
 
     bool exceptionThrown = false;
