@@ -2,8 +2,9 @@
 #include <assert.h>
 #include "application.h"
 #include "elements.h"
-#include "test.h"
 #include <vector>
+#include <sstream>
+#include <fstream>
 
 using namespace std;
 
@@ -163,5 +164,188 @@ void id()
     assert(bol == true);
     vector<Issue*> vec = lib->getIssues();
     assert(vec[2]->get_name() == "name_4");
+    lib->clear();
+}
+
+void exception_7()
+{
+    Library* lib = Library::getInstance();
+    const char* file_name = "test_data.csv";
+    ofstream save_file;
+    save_file.open(file_name, ios::out);
+    save_file<<"Audiobok\n";
+    save_file.close();
+
+    bool exceptionThrown = false;
+    ifstream dataFile;
+    dataFile.open(file_name);
+    string type;
+    try
+    {
+        lib->read_from_file(file_name);
+    }
+    catch(...)
+    {
+        exceptionThrown = true;
+    }
+    assert(exceptionThrown);
+    lib->clear();
+}
+
+void exception_6()
+{
+    Library* lib = Library::getInstance();
+    const char* file_name = "test_data.csv";
+    ofstream save_file;
+    save_file.open(file_name, ios::out);
+    save_file<<"Book\n";
+    save_file<<"1,nazwa1,imie1,nazwisko1,1,1,wydawca1,true\n";
+    save_file<<"Audiobook\n";
+    save_file<<"1,nazwa2,imie2,nazwisko2,2,2,wydawca2,format2,true\n";
+    save_file.close();
+
+    bool exceptionThrown = false;
+    ifstream dataFile;
+    dataFile.open(file_name);
+    string type;
+    try
+    {
+        lib->read_from_file(file_name);
+    }
+    catch(...)
+    {
+        exceptionThrown = true;
+    }
+    assert(exceptionThrown);
+    lib->clear();
+}
+
+void exception_0()
+{
+    Library* lib = Library::getInstance();
+    const char* file_name = "test_data.csv";
+    ofstream save_file;
+    save_file.open(file_name, ios::out);
+    save_file<<"Book\n";
+    save_file<<"1,nazwa1,imie1,nazwisko1,1,1,wydawca1,true1\n";
+    save_file.close();
+
+    bool exceptionThrown = false;
+    ifstream dataFile;
+    dataFile.open(file_name);
+    string type;
+    try
+    {
+        lib->read_from_file(file_name);
+    }
+    catch(...)
+    {
+        exceptionThrown = true;
+    }
+    assert(exceptionThrown);
+    lib->clear();
+}
+
+void exception_1()
+{
+    Library* lib = Library::getInstance();
+    const char* file_name = "test_data.csv";
+    ofstream save_file;
+    save_file.open(file_name, ios::out);
+    save_file<<"Book\n";
+    save_file<<"0,nazwa1,imie1,nazwisko1,2,1,wydawca1,true\n";
+    save_file.close();
+
+    bool exceptionThrown = false;
+    ifstream dataFile;
+    dataFile.open(file_name);
+    string type;
+    try
+    {
+        lib->read_from_file(file_name);
+    }
+    catch(...)
+    {
+        exceptionThrown = true;
+    }
+    assert(exceptionThrown);
+    lib->clear();
+}
+
+void exception_2()
+{
+    Library* lib = Library::getInstance();
+    const char* file_name = "test_data.csv";
+    ofstream save_file;
+    save_file.open(file_name, ios::out);
+    save_file<<"Book\n";
+    save_file<<"1,nazwa1,imie1,nazwisko1,0,1,wydawca1,true\n";
+    save_file.close();
+
+    bool exceptionThrown = false;
+    ifstream dataFile;
+    dataFile.open(file_name);
+    string type;
+    try
+    {
+        lib->read_from_file(file_name);
+    }
+    catch(...)
+    {
+        exceptionThrown = true;
+    }
+    assert(exceptionThrown);
+    lib->clear();
+}
+
+void exception_3()
+{
+    Library* lib = Library::getInstance();
+    const char* file_name = "test_data.csv";
+    ofstream save_file;
+    save_file.open(file_name, ios::out);
+    save_file<<"Book\n";
+    save_file<<"1,nazwa1,imie1,nazwisko1,2,0,wydawca1,true\n";
+    save_file.close();
+
+    bool exceptionThrown = false;
+    ifstream dataFile;
+    dataFile.open(file_name);
+    string type;
+    try
+    {
+        lib->read_from_file(file_name);
+    }
+    catch(...)
+    {
+        exceptionThrown = true;
+    }
+    assert(exceptionThrown);
+    lib->clear();
+}
+
+void exception_4()
+{
+    Library* lib = Library::getInstance();
+    const char* file_name = "test_data.csv";
+    ofstream save_file;
+    save_file.open(file_name, ios::out);
+    save_file<<"Magazine\n";
+    save_file<<"6969,Fantastyka,Imie,Nazwisko,2022,30,wydawca_3,0,true\n";
+    save_file.close();
+
+    bool exceptionThrown = false;
+    ifstream dataFile;
+    dataFile.open(file_name);
+    string type;
+    try
+    {
+        lib->read_from_file(file_name);
+    }
+    catch(...)
+    {
+        exceptionThrown = true;
+    }
+    assert(exceptionThrown);
     lib->clear();
 }
