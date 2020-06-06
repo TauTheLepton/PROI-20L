@@ -20,7 +20,6 @@ int main()
 	exception_3();
 	exception_4();
 	exception_6();
-	exception_7();
 
     cout<<"Wszystkie testy wykonano pomyslnie! :)"<<endl;
 

@@ -168,32 +168,6 @@ void id()
     lib->clear();
 }
 
-void exception_7()
-{
-    Library* lib = Library::getInstance();
-    const char* file_name = "test_data.csv";
-    ofstream save_file;
-    save_file.open(file_name, ios::out);
-    save_file<<"Audiobok\n";
-    save_file<<"1,nazwa2,imie2,nazwisko2,2,2,wydawca2,format2,true\n";
-    save_file.close();
-
-    bool exceptionThrown = false;
-    ifstream dataFile;
-    dataFile.open(file_name);
-    string type;
-    try
-    {
-        lib->read_from_file(file_name);
-    }
-    catch(...)
-    {
-        exceptionThrown = true;
-    }
-    assert(exceptionThrown);
-    lib->clear();
-}
-
 void exception_6()
 {
     Library* lib = Library::getInstance();

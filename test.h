@@ -17,6 +17,5 @@ void exception_2();
 void exception_3();
 void exception_4();
 void exception_6();
-void exception_7();
 
 #endif // TEST_H_INCLUDED
