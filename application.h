@@ -42,7 +42,6 @@ class Library
         static Library* getInstance();///funkcja zwracajaca adres instancji biblioteki
         void add_to_library(Issue*);
         vector<Issue*> search_by(int, int, string);  ///grupuje wszystkie poszczegulne seawrch by
-        void showAssets();  ///nie dzialal, program sie zapetlal, poprawilem
 };
 
 

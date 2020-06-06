@@ -67,10 +67,6 @@ __fastcall TForm1::TForm1(TComponent* Owner)
                         ShowMessage("Numery ID nie sa unikalne.");
                         Application->Terminate();
                 }
-                else if(t==7)
-                {
-                        ShowMessage("Niektore rekordy z pliku wejsciowego maja zle zdefiniowany typ danych.\nTe dane zostana pominiete.");
-                }
         }
         stack.push("Wczytano dane z pliku");
 

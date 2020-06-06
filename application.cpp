@@ -21,23 +21,6 @@ Library::~Library()     ///nie mam pojecia czy dobrze zwlaniam pamiec
     {
         delete issues[i];
     }
-    // cout<<"Destoyed!"<<endl;
-}
-
-void Library::showAssets()
-{
-    // for(Issue* n: issues)
-    // {
-    //     cout<<n->title<<endl;
-    // }
-
-    for(int i=0; i<issues.size(); i++)
-    {
-        cout<<"--------------------"<<endl;
-        cout<<"Object "<<i<<":"<<endl;
-        issues[i]->showProperties();
-    }
-    cout<<"--------------------"<<endl;
 }
 
 void Library::add_to_library(Issue* is)
@@ -127,7 +110,6 @@ void Library::read_from_file(const char* file_name)
             }
             Book* b = new Book(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, status_bool);
             this->add_to_library(b);
-            control_variable_1++;
         }
         else if(type=="Audiobook")
         {
@@ -172,7 +154,6 @@ void Library::read_from_file(const char* file_name)
             }
             Audiobook* a = new Audiobook(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special, status_bool);
             this->add_to_library(a);
-            control_variable_1++;
         }
         else if(type=="Magazine")
         {
@@ -223,7 +204,6 @@ void Library::read_from_file(const char* file_name)
             }
             Magazine* m = new Magazine(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special_int, status_bool);
             this->add_to_library(m);
-            control_variable_1++;
         }
         else if(type=="ScientificWork")
         {
@@ -272,17 +252,9 @@ void Library::read_from_file(const char* file_name)
             }
             ScientificWork* a = new ScientificWork(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special, status_bool);
             this->add_to_library(a);
-            control_variable_1++;
         }
-
-        control_variable_2++;
     }
     dataFile.close();
-
-    if(control_variable_1!=control_variable_2)
-    {
-        throw 7;
-    }
 }
 
 void Library::save_to_file(const char* file_name)

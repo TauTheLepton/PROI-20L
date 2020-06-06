@@ -37,7 +37,6 @@ class Issue
         virtual int get_number() = 0;
         virtual string get_discipline() = 0;
         virtual string get_format() = 0;
-        virtual void showProperties() = 0;
         virtual string get_caption() = 0; ///funkcja zwracająca tekst, ktory bedzie reprezentowal rekord w wynikach wyszukiwania
 
 };
@@ -64,7 +63,6 @@ class Magazine:public Issue
     public:
         Magazine(int, string, string, string, int, int, string, int, bool);
         ~Magazine();
-        void showProperties();
         int get_number();
         string get_discipline();
         string get_format();
@@ -80,7 +78,6 @@ class ScientificWork:public Issue
     public:
         ScientificWork(int, string, string, string, int, int, string, string, bool);
         ~ScientificWork();
-        void showProperties();
         int get_number();
         string get_discipline();
         string get_format();
@@ -97,7 +94,6 @@ class Audiobook:public Issue
     public:
         Audiobook(int, string, string, string, int, int, string, string, bool);
         ~Audiobook();
-        void showProperties();
         int get_number();
         string get_discipline();
         string get_format();
