@@ -108,6 +108,11 @@ void Library::read_from_file(const char* file_name)
             {
                 throw 3;
             }
+            if(is_unique_id(id_number_int) == false)
+            {
+                throw 6;
+            }
+
             Book* b = new Book(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, status_bool);
             this->add_to_library(b);
         }
@@ -152,6 +157,11 @@ void Library::read_from_file(const char* file_name)
             {
                 throw 3;
             }
+            if(is_unique_id(id_number_int) == false)
+            {
+                throw 6;
+            }
+
             Audiobook* a = new Audiobook(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special, status_bool);
             this->add_to_library(a);
         }
@@ -202,6 +212,11 @@ void Library::read_from_file(const char* file_name)
             {
                 throw 4;
             }
+            if(is_unique_id(id_number_int) == false)
+            {
+                throw 6;
+            }
+
             Magazine* m = new Magazine(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special_int, status_bool);
             this->add_to_library(m);
         }
