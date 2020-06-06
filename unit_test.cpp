@@ -14,6 +14,13 @@ int main()
     _search();
     _unique();
     id();
+	exception_0();
+	exception_1();
+	exception_2();
+	exception_3();
+	exception_4();
+	exception_6();
+	exception_7();
 
     cout<<"Wszystkie testy wykonano pomyslnie! :)"<<endl;
 
