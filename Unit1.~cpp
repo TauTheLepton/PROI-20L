@@ -29,40 +29,43 @@ __fastcall TForm1::TForm1(TComponent* Owner)
         }
         catch (int t)
         {
+                /// Obsluga wyjatkow, w zaleznosci od typu bledu, wyswietlany
+                /// jest stosowny komunikat, a aplikacja jest zamykana.
+
                 if(t==0)
                 {
                         ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje statusu wypozyczenia w jednym z rekordow.");
-                        Form1->Close();
+                        Application->Terminate();
                 }
                 else if(t==1)
                 {
                         ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje numeru ID w jednym z rekordow.");
-                        Form1->Close();
+                        Application->Terminate();
                 }
                 else if(t==2)
                 {
                         ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje roku wydania w jednym z rekordow.");
-                        Form1->Close();
+                        Application->Terminate();
                 }
                 else if(t==3)
                 {
                         ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje ilosci stron w jednym z rekordow");
-                        Form1->Close();
+                        Application->Terminate();
                 }
                 else if(t==4)
                 {
                         ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje parametru specjalnego w jednym z rekordow.");
-                        Form1->Close();
+                        Application->Terminate();
                 }
                 else if(t==5)
                 {
                         ShowMessage("Nie mozna otworzyc pliku wejsciowego.");
-                        Form1->Close();
+                        Application->Terminate();
                 }
                 else if(t==6)
                 {
                         ShowMessage("Numery ID nie sa unikalne.");
-                        Form1->Close();
+                        Application->Terminate();
                 }
                 else if(t==7)
                 {

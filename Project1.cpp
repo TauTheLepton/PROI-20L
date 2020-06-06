@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------
-
+/// Plik, ktory stanowi event loop dla aplikacji (tu znajduje sie funkcja main)
 #include <vcl.h>
 #pragma hdrstop
 //---------------------------------------------------------------------------

@@ -29,6 +29,9 @@ __fastcall TForm1::TForm1(TComponent* Owner)
         }
         catch (int t)
         {
+                /// Obsluga wyjatkow, w zaleznosci od typu bledu, wyswietlany
+                /// jest stosowny komunikat, a aplikacja jest zamykana.
+
                 if(t==0)
                 {
                         ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje statusu wypozyczenia w jednym z rekordow.");
@@ -66,8 +69,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
                 }
                 else if(t==7)
                 {
-                        ShowMessage("B³êdna deklaracja typu w pliku wejsciowym.");
-                        Application->Terminate();
+                        ShowMessage("Niektore rekordy z pliku wejsciowego maja zle zdefiniowany typ danych.\nTe dane zostana pominiete.");
                 }
         }
         stack.push("Wczytano dane z pliku");
