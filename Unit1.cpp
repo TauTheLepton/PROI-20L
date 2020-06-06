@@ -32,26 +32,42 @@ __fastcall TForm1::TForm1(TComponent* Owner)
                 if(t==0)
                 {
                         ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje statusu wypozyczenia w jednym z rekordow.");
+                        Application->Terminate();
                 }
                 else if(t==1)
                 {
                         ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje numeru ID w jednym z rekordow.");
+                        Application->Terminate();
                 }
                 else if(t==2)
                 {
                         ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje roku wydania w jednym z rekordow.");
+                        Application->Terminate();
                 }
                 else if(t==3)
                 {
                         ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje ilosci stron w jednym z rekordow");
+                        Application->Terminate();
                 }
                 else if(t==4)
                 {
                         ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje parametru specjalnego w jednym z rekordow.");
+                        Application->Terminate();
                 }
                 else if(t==5)
                 {
                         ShowMessage("Nie mozna otworzyc pliku wejsciowego.");
+                        Application->Terminate();
+                }
+                else if(t==6)
+                {
+                        ShowMessage("Numery ID nie sa unikalne.");
+                        Application->Terminate();
+                }
+                else if(t==7)
+                {
+                        ShowMessage("B³êdna deklaracja typu w pliku wejsciowym.");
+                        Application->Terminate();
                 }
         }
         stack.push("Wczytano dane z pliku");
@@ -482,4 +498,5 @@ void __fastcall TForm1::Button3Click(TObject *Sender)
         }
 }
 //---------------------------------------------------------------------------
+
 

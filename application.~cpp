@@ -9,6 +9,8 @@
 
 using namespace std;
 
+vector<string> OperationStack::operations; ///inicjalizacja statycznego wektora
+
 Library::Library()
 {
 }
@@ -43,10 +45,19 @@ void Library::add_to_library(Issue* is)
     issues.push_back(is);
 }
 
-void Library::read_from_file()
+void Library::clear()
+{
+    for(int i=0; i<issues.size(); i++)
+    {
+        delete issues[i];
+    }
+    issues.clear();
+}
+
+void Library::read_from_file(const char* file_name)
 {
     ifstream dataFile;
-    dataFile.open("data.csv");
+    dataFile.open(file_name);
     string type;        ///zmienna do ktorej czytany jest typ kolejnego obiektu z pliku
     string id_number;
     int id_number_int;
@@ -248,17 +259,25 @@ void Library::read_from_file()
             {
                 throw 3;
             }
+            if(is_unique_id(id_number_int) == false)
+            {
+                throw 6;
+            }
             ScientificWork* a = new ScientificWork(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special, status_bool);
             this->add_to_library(a);
+        }
+        else
+        {
+            1==1;
         }
     }
     dataFile.close();
 }
 
-void Library::save_to_file()
+void Library::save_to_file(const char* file_name)
 {
     ofstream save_file;
-    save_file.open("data.csv", ios::out);
+    save_file.open(file_name, ios::out);
 
     for (int i=0; i<issues.size(); i++)
     {

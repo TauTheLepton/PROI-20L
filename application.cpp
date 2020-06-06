@@ -259,6 +259,10 @@ void Library::read_from_file(const char* file_name)
             {
                 throw 3;
             }
+            if(is_unique_id(id_number_int) == false)
+            {
+                throw 6;
+            }
             ScientificWork* a = new ScientificWork(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special, status_bool);
             this->add_to_library(a);
         }
@@ -268,15 +272,6 @@ void Library::read_from_file(const char* file_name)
         }
     }
     dataFile.close();
-    int idd;
-    for(int i=0; i<issues.size(); i++)
-    {
-        idd = issues[i]->get_id();
-        if(is_unique_id(idd) == false)
-        {
-            throw 6;
-        }
-    }
 }
 
 void Library::save_to_file(const char* file_name)
