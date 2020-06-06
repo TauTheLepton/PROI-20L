@@ -15,7 +15,7 @@ Library::Library()
 {
 }
 
-Library::~Library()     ///nie mam pojecia czy dobrze zwlaniam pamiec
+Library::~Library()
 {
     for(int i=0; i<issues.size(); i++)
     {
@@ -280,8 +280,6 @@ void Library::save_to_file(const char* file_name)
     for (int i=0; i<issues.size(); i++)
     {
         ///z pomoca funkcji typeid() sprawdzam typ kazdego z egzemplarzy
-
-        // if((string)typeid(*issues[i]).name()=="Audiobook")
         if(((string)typeid(*issues[i]).name()).find("Audiobook")!= string::npos)
         {
             save_file<<"Audiobook\n";
@@ -297,8 +295,6 @@ void Library::save_to_file(const char* file_name)
             save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<","<<t9<<"\n";
 
         }
-
-        // else if((string)typeid(*issues[i]).name()=="Book")
         else if(((string)typeid(*issues[i]).name()).find("Book")!= string::npos)
         {
             save_file<<"Book\n";
@@ -312,8 +308,6 @@ void Library::save_to_file(const char* file_name)
             string t8 = issues[i]->get_is_available()?"true":"false";
             save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<"\n";
         }
-
-        // else if((string)typeid(*issues[i]).name()=="Magazine")
         else if(((string)typeid(*issues[i]).name()).find("Magazine")!= string::npos)
         {
             save_file<<"Magazine\n";
@@ -328,8 +322,6 @@ void Library::save_to_file(const char* file_name)
             string t9 = issues[i]->get_is_available()?"true":"false";
             save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<","<<t9<<"\n";
         }
-
-        // else if((string)typeid(*issues[i]).name()=="ScientificWork")
         else if(((string)typeid(*issues[i]).name()).find("ScientificWork")!= string::npos)
         {
             save_file<<"ScientificWork\n";
@@ -537,7 +529,7 @@ Library* Library::getInstance()
     return instance;
 }
 
-bool Library::is_unique_id(int id)      ///zrobic to
+bool Library::is_unique_id(int id)
 {
     bool result = true;
     for(int i=0; i<issues.size(); i++)
@@ -583,7 +575,6 @@ string OperationStack::pull()
 
         return f;
     }
-
     else
     {
         return "Brak informacji o poprzednich operacjach";
@@ -607,7 +598,6 @@ string report_creator(int type, string message, int issue_id, string parameter_1
     {
         ss<<message<<" "<<issue_id;
     }
-
     else if(type == 2)
     {
         ss<<message<<" "<<parameter_1<<", "<<parameter_2;

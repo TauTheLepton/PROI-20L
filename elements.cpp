@@ -120,7 +120,7 @@ void Issue::change_status()
     }
 }
 
-///zaczyna sie wirtualne na numer dziedzine i format
+///gettery pol specjalnych
 
 int Book::get_number()
 {

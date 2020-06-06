@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
+    ///tu wywolywane sa wszystkie testy jednostkowe
     book();
     audiobook();
     magazine();
