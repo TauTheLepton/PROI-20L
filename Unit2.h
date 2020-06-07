@@ -13,13 +13,14 @@
 class TForm2 : public TForm
 {
 __published:	// IDE-managed Components
+        /// etykieta
         TLabel *Label1;
         void __fastcall FormShow(TObject *Sender);
 private:	// User declarations
 
 public:		// User declarations
         __fastcall TForm2(TComponent* Owner);
-        AnsiString show;
+        AnsiString show; /// zmienna potrebna do komunikacji miedzy Unit1, a Unit2
 
 };
 //---------------------------------------------------------------------------

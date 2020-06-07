@@ -1,3 +1,5 @@
+/// deklaruje wartosci domyslne dla obiektow w Form2
+
 object Form2: TForm2
   Left = 494
   Top = 190

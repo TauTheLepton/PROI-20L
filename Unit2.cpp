@@ -18,7 +18,8 @@ __fastcall TForm2::TForm2(TComponent* Owner)
 
 void __fastcall TForm2::FormShow(TObject *Sender)
 {
-        Form2->Label1->Caption = Form2->show;        
+        /// Pobieram AnsiStringa ze wszystkimi operacjami i wyswietlam go w tym oknie
+        Form2->Label1->Caption = Form2->show;
 }
 //---------------------------------------------------------------------------
 

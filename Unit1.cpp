@@ -82,14 +82,11 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 }
 //---------------------------------------------------------------------------
 
-
-
-
-
-
-
 void __fastcall TForm1::ComboBox1Change(TObject *Sender)
 {
+        /// funkcja, ktora zmienia zmienia zawartosc drugiej listy rozwijanej
+        /// w zaleznosci od pierwszej
+
         ComboBox2->Enabled = true;
         ComboBox2->Clear();
         ComboBox2->Text = "Parametr wyszukiwania";
@@ -156,6 +153,8 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
 
         Form1->res = issues;
 
+        /// gdy lista wynikow jest pusta, blokuje przyciski do operacji na rekordach,
+        /// zeby nie dopuscic do bledu krytycznego
         if(Form1->res.size() == 0)
         {
                 Button3->Enabled = false;
@@ -167,6 +166,8 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
 
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
+        /// przycisk sluzacy do wyszukiwania
+
         Library* g = Library::getInstance();
 
         vector<Issue*> results;
@@ -328,6 +329,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 
         Form1->res = results;
 
+        /// dodaje ksiazki do listy wynikow
         for(int i=0;i<Form1->res.size();i++)
         {
                 ListBox1->Items->Add(Form1->res[i]->get_caption().c_str());
@@ -344,6 +346,9 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 
 void __fastcall TForm1::Edit1Change(TObject *Sender)
 {
+        /// metoda blokujaca przycisk do szukania, gdy nie podano zadnych danych
+        /// do pola tekstowego
+
         if(Edit1->Text=="")
         {
                 Button1->Enabled = false;
@@ -358,6 +363,8 @@ void __fastcall TForm1::Edit1Change(TObject *Sender)
 
 void __fastcall TForm1::Button4Click(TObject *Sender)
 {
+        /// przycisk do wyswietlania informacji o rekordzie
+
         Library* g = Library::getInstance();
         int a = ListBox1->ItemIndex;
         ShowMessage(Form1->res[a]->get_info().c_str());
@@ -370,8 +377,6 @@ void __fastcall TForm1::Button4Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-
-
 void __fastcall TForm1::Button6Click(TObject *Sender)
 {
         ///przycisk pokazujacy ostatnia operacje
@@ -382,6 +387,8 @@ void __fastcall TForm1::Button6Click(TObject *Sender)
 
 void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action)
 {
+       /// metoda zapisujaca dane, podczas zamykania programu
+
        Library* g = Library::getInstance();
 
        g->save_to_file("data.csv");
@@ -441,8 +448,6 @@ void __fastcall TForm1::ListBox1Click(TObject *Sender)
         Button2->Caption = status?"Wypozycz":"Zwroc";
 }
 //---------------------------------------------------------------------------
-
-
 
 void __fastcall TForm1::Button7Click(TObject *Sender)
 {

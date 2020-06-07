@@ -12,6 +12,7 @@
 class TForm3 : public TForm
 {
 __published:	// IDE-managed Components
+        /// pola tekstowe z etykieta
         TLabeledEdit *LabeledEdit1;
         TLabeledEdit *LabeledEdit2;
         TLabeledEdit *LabeledEdit3;
@@ -22,8 +23,11 @@ __published:	// IDE-managed Components
         TLabeledEdit *LabeledEdit8;
         TLabeledEdit *LabeledEdit9;
         TLabeledEdit *LabeledEdit10;
+        /// przycisk
         TButton *Button1;
+        /// lista rozwijana
         TComboBox *ComboBox1;
+        /// funkcje obslugujace zdarzenia
         void __fastcall ComboBox1Change(TObject *Sender);
         void __fastcall Button1Click(TObject *Sender);
 private:	// User declarations
