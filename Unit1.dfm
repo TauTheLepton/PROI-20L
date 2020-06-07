@@ -1,5 +1,3 @@
-/// deklaruje wartosci domyslne dla atrybutow obiektow
-
 object Form1: TForm1
   Left = 849
   Top = 243

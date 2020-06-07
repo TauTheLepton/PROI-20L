@@ -1,6 +1,3 @@
-/// w tym pliku znajduja sie domyslne parametry trzeciego okna i wszystkich
-/// wystepujacych w nim obiektow
-
 object Form3: TForm3
   Left = 155
   Top = 192
