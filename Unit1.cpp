@@ -23,8 +23,51 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 {
         /// Inicjuje okno oraz wczytuje dane
         Library* g = Library::getInstance();
-        g->read_from_file();
+        try
+        {
+                g->read_from_file("data.csv");
+        }
+        catch (int t)
+        {
+                /// Obsluga wyjatkow, w zaleznosci od typu bledu, wyswietlany
+                /// jest stosowny komunikat, a aplikacja jest zamykana.
 
+                if(t==0)
+                {
+                        ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje statusu wypozyczenia w jednym z rekordow.");
+                        Application->Terminate();
+                }
+                else if(t==1)
+                {
+                        ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje numeru ID w jednym z rekordow.");
+                        Application->Terminate();
+                }
+                else if(t==2)
+                {
+                        ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje roku wydania w jednym z rekordow.");
+                        Application->Terminate();
+                }
+                else if(t==3)
+                {
+                        ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje ilosci stron w jednym z rekordow");
+                        Application->Terminate();
+                }
+                else if(t==4)
+                {
+                        ShowMessage("W pliku wejsciowym podano niepoprawna deklaracje parametru specjalnego w jednym z rekordow.");
+                        Application->Terminate();
+                }
+                else if(t==5)
+                {
+                        ShowMessage("Nie mozna otworzyc pliku wejsciowego.");
+                        Application->Terminate();
+                }
+                else if(t==6)
+                {
+                        ShowMessage("Numery ID nie sa unikalne.");
+                        Application->Terminate();
+                }
+        }
         stack.push("Wczytano dane z pliku");
 
         ComboBox1->Items->Add("Dowolny");
@@ -39,14 +82,11 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 }
 //---------------------------------------------------------------------------
 
-
-
-
-
-
-
 void __fastcall TForm1::ComboBox1Change(TObject *Sender)
 {
+        /// funkcja, ktora zmienia zmienia zawartosc drugiej listy rozwijanej
+        /// w zaleznosci od pierwszej
+
         ComboBox2->Enabled = true;
         ComboBox2->Clear();
         ComboBox2->Text = "Parametr wyszukiwania";
@@ -108,15 +148,26 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
 
         for(int x = 0; x<issues.size(); x++)
         {
-                ListBox1->Items->Add(issues[x]->get_title().c_str());
+                ListBox1->Items->Add(issues[x]->get_caption().c_str());
         }
 
         Form1->res = issues;
+
+        /// gdy lista wynikow jest pusta, blokuje przyciski do operacji na rekordach,
+        /// zeby nie dopuscic do bledu krytycznego
+        if(Form1->res.size() == 0)
+        {
+                Button3->Enabled = false;
+                Button2->Enabled = false;
+                Button4->Enabled = false;
+        }
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
+        /// przycisk sluzacy do wyszukiwania
+
         Library* g = Library::getInstance();
 
         vector<Issue*> results;
@@ -178,7 +229,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
                         }
                 }
            }
-           
+
          else if(t == 2)
          {
                vector<Issue*> results2;
@@ -278,15 +329,26 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 
         Form1->res = results;
 
+        /// dodaje ksiazki do listy wynikow
         for(int i=0;i<Form1->res.size();i++)
         {
-                ListBox1->Items->Add(Form1->res[i]->get_title().c_str());
+                ListBox1->Items->Add(Form1->res[i]->get_caption().c_str());
+        }
+
+        if(Form1->res.size() == 0)
+        {
+                Button3->Enabled = false;
+                Button2->Enabled = false;
+                Button4->Enabled = false;
         }
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Edit1Change(TObject *Sender)
 {
+        /// metoda blokujaca przycisk do szukania, gdy nie podano zadnych danych
+        /// do pola tekstowego
+
         if(Edit1->Text=="")
         {
                 Button1->Enabled = false;
@@ -301,6 +363,8 @@ void __fastcall TForm1::Edit1Change(TObject *Sender)
 
 void __fastcall TForm1::Button4Click(TObject *Sender)
 {
+        /// przycisk do wyswietlania informacji o rekordzie
+
         Library* g = Library::getInstance();
         int a = ListBox1->ItemIndex;
         ShowMessage(Form1->res[a]->get_info().c_str());
@@ -313,8 +377,6 @@ void __fastcall TForm1::Button4Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-
-
 void __fastcall TForm1::Button6Click(TObject *Sender)
 {
         ///przycisk pokazujacy ostatnia operacje
@@ -325,9 +387,11 @@ void __fastcall TForm1::Button6Click(TObject *Sender)
 
 void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action)
 {
+       /// metoda zapisujaca dane, podczas zamykania programu
+
        Library* g = Library::getInstance();
 
-       g->save_to_file();
+       g->save_to_file("data.csv");
 }
 //---------------------------------------------------------------------------
 
@@ -364,13 +428,26 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
 
 void __fastcall TForm1::ListBox1Click(TObject *Sender)
 {
+
+        if(ListBox1->ItemIndex == -1)
+        {
+                Button3->Enabled = false;
+                Button2->Enabled = false;
+                Button4->Enabled = false;
+        }
+
+        else
+        {
+                Button3->Enabled = true;
+                Button2->Enabled = true;
+                Button4->Enabled = true;
+        }
+
         int a = ListBox1->ItemIndex;
         bool status = Form1->res[a]->get_is_available();
         Button2->Caption = status?"Wypozycz":"Zwroc";
 }
 //---------------------------------------------------------------------------
-
-
 
 void __fastcall TForm1::Button7Click(TObject *Sender)
 {
@@ -399,4 +476,30 @@ void __fastcall TForm1::Button8Click(TObject *Sender)
         Form2->ShowModal();
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button3Click(TObject *Sender)
+{
+        ///Przycisk do usuwania egzemplarzy
+        Library* g = Library::getInstance();
+        int a = ListBox1->ItemIndex;
+
+        int id_to_delete =  res[a]->get_id();
+
+        bool is_deleted = g->delete_id(id_to_delete);
+
+        if(is_deleted)
+        {
+                ListBox1->Items->Delete(a);
+
+                string message = "Usunieto rekord o sygnaturze:";
+                string report = report_creator(1,message,id_to_delete);
+                stack.push(report);
+        }
+        else
+        {
+                ShowMessage("Tsoooo???");
+        }
+}
+//---------------------------------------------------------------------------
+
 

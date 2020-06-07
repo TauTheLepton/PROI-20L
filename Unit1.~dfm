@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 489
-  Top = 288
+  Left = 849
+  Top = 243
   Width = 964
   Height = 679
-  Caption = 'Form1'
+  Caption = 'Biblioteka Pot'#281#380'na'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -51,7 +51,9 @@ object Form1: TForm1
     Width = 75
     Height = 25
     Caption = 'Usu'#324
+    Enabled = False
     TabOrder = 3
+    OnClick = Button3Click
   end
   object Button2: TButton
     Left = 632
@@ -59,6 +61,7 @@ object Form1: TForm1
     Width = 75
     Height = 25
     Caption = 'Wypo'#380'ycz'
+    Enabled = False
     TabOrder = 4
     OnClick = Button2Click
   end
@@ -68,6 +71,7 @@ object Form1: TForm1
     Width = 75
     Height = 25
     Caption = 'Poka'#380
+    Enabled = False
     TabOrder = 5
     OnClick = Button4Click
   end

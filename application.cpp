@@ -9,33 +9,18 @@
 
 using namespace std;
 
+vector<string> OperationStack::operations; ///inicjalizacja statycznego wektora
+
 Library::Library()
 {
 }
 
-Library::~Library()     ///nie mam pojecia czy dobrze zwlaniam pamiec
+Library::~Library()
 {
     for(int i=0; i<issues.size(); i++)
     {
         delete issues[i];
     }
-    // cout<<"Destoyed!"<<endl;
-}
-
-void Library::showAssets()
-{
-    // for(Issue* n: issues)
-    // {
-    //     cout<<n->title<<endl;
-    // }
-
-    for(int i=0; i<issues.size(); i++)
-    {
-        cout<<"--------------------"<<endl;
-        cout<<"Object "<<i<<":"<<endl;
-        issues[i]->showProperties();
-    }
-    cout<<"--------------------"<<endl;
 }
 
 void Library::add_to_library(Issue* is)
@@ -43,10 +28,19 @@ void Library::add_to_library(Issue* is)
     issues.push_back(is);
 }
 
-void Library::read_from_file()
+void Library::clear()
+{
+    for(int i=0; i<issues.size(); i++)
+    {
+        delete issues[i];
+    }
+    issues.clear();
+}
+
+void Library::read_from_file(const char* file_name)
 {
     ifstream dataFile;
-    dataFile.open("data.csv");
+    dataFile.open(file_name);
     string type;        ///zmienna do ktorej czytany jest typ kolejnego obiektu z pliku
     string id_number;
     int id_number_int;
@@ -63,6 +57,10 @@ void Library::read_from_file()
     string status;
     bool status_bool;
     Issue* temp2;
+
+    int control_variable_1 = 0;
+    int control_variable_2 = 0;
+
     if(dataFile.fail())
     {
         throw 5;
@@ -110,6 +108,11 @@ void Library::read_from_file()
             {
                 throw 3;
             }
+            if(is_unique_id(id_number_int) == false)
+            {
+                throw 6;
+            }
+
             Book* b = new Book(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, status_bool);
             this->add_to_library(b);
         }
@@ -154,6 +157,11 @@ void Library::read_from_file()
             {
                 throw 3;
             }
+            if(is_unique_id(id_number_int) == false)
+            {
+                throw 6;
+            }
+
             Audiobook* a = new Audiobook(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special, status_bool);
             this->add_to_library(a);
         }
@@ -204,6 +212,11 @@ void Library::read_from_file()
             {
                 throw 4;
             }
+            if(is_unique_id(id_number_int) == false)
+            {
+                throw 6;
+            }
+
             Magazine* m = new Magazine(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special_int, status_bool);
             this->add_to_library(m);
         }
@@ -248,6 +261,10 @@ void Library::read_from_file()
             {
                 throw 3;
             }
+            if(is_unique_id(id_number_int) == false)
+            {
+                throw 6;
+            }
             ScientificWork* a = new ScientificWork(id_number_int, title, authorName, authorSurname, year_int, pages_int, publisher, special, status_bool);
             this->add_to_library(a);
         }
@@ -255,16 +272,14 @@ void Library::read_from_file()
     dataFile.close();
 }
 
-void Library::save_to_file()
+void Library::save_to_file(const char* file_name)
 {
     ofstream save_file;
-    save_file.open("data.csv", ios::out);
+    save_file.open(file_name, ios::out);
 
     for (int i=0; i<issues.size(); i++)
     {
         ///z pomoca funkcji typeid() sprawdzam typ kazdego z egzemplarzy
-
-        // if((string)typeid(*issues[i]).name()=="Audiobook")
         if(((string)typeid(*issues[i]).name()).find("Audiobook")!= string::npos)
         {
             save_file<<"Audiobook\n";
@@ -280,8 +295,6 @@ void Library::save_to_file()
             save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<","<<t9<<"\n";
 
         }
-
-        // else if((string)typeid(*issues[i]).name()=="Book")
         else if(((string)typeid(*issues[i]).name()).find("Book")!= string::npos)
         {
             save_file<<"Book\n";
@@ -295,8 +308,6 @@ void Library::save_to_file()
             string t8 = issues[i]->get_is_available()?"true":"false";
             save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<"\n";
         }
-
-        // else if((string)typeid(*issues[i]).name()=="Magazine")
         else if(((string)typeid(*issues[i]).name()).find("Magazine")!= string::npos)
         {
             save_file<<"Magazine\n";
@@ -311,8 +322,6 @@ void Library::save_to_file()
             string t9 = issues[i]->get_is_available()?"true":"false";
             save_file<<t1<<","<<t2<<","<<t3<<","<<t4<<","<<t5<<","<<t6<<","<<t7<<","<<t8<<","<<t9<<"\n";
         }
-
-        // else if((string)typeid(*issues[i]).name()=="ScientificWork")
         else if(((string)typeid(*issues[i]).name()).find("ScientificWork")!= string::npos)
         {
             save_file<<"ScientificWork\n";
@@ -520,7 +529,7 @@ Library* Library::getInstance()
     return instance;
 }
 
-bool Library::is_unique_id(int id)      ///zrobic to
+bool Library::is_unique_id(int id)
 {
     bool result = true;
     for(int i=0; i<issues.size(); i++)
@@ -566,7 +575,6 @@ string OperationStack::pull()
 
         return f;
     }
-
     else
     {
         return "Brak informacji o poprzednich operacjach";
@@ -590,7 +598,6 @@ string report_creator(int type, string message, int issue_id, string parameter_1
     {
         ss<<message<<" "<<issue_id;
     }
-
     else if(type == 2)
     {
         ss<<message<<" "<<parameter_1<<", "<<parameter_2;

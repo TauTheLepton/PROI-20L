@@ -40,6 +40,7 @@ __published:	// IDE-managed Components
         void __fastcall ListBox1Click(TObject *Sender);
         void __fastcall Button7Click(TObject *Sender);
         void __fastcall Button8Click(TObject *Sender);
+        void __fastcall Button3Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
         __fastcall TForm1(TComponent* Owner);

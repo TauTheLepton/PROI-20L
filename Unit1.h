@@ -16,18 +16,24 @@
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
+        /// listy rozwijane
         TComboBox *ComboBox1;
         TComboBox *ComboBox2;
+        /// przyciski
         TButton *Button1;
         TButton *Button3;
         TButton *Button2;
         TButton *Button4;
-        TEdit *Edit1;
-        TListBox *ListBox1;
         TButton *Button5;
         TButton *Button6;
         TButton *Button7;
         TButton *Button8;
+        /// pole tekstowe
+        TEdit *Edit1;
+        /// lista
+        TListBox *ListBox1;
+
+        ///komendy obslugujace zdarzenia
         void __fastcall ComboBox1Change(TObject *Sender);
         void __fastcall ComboBox2Change(TObject *Sender);
         void __fastcall Button5Click(TObject *Sender);
@@ -40,6 +46,7 @@ __published:	// IDE-managed Components
         void __fastcall ListBox1Click(TObject *Sender);
         void __fastcall Button7Click(TObject *Sender);
         void __fastcall Button8Click(TObject *Sender);
+        void __fastcall Button3Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
         __fastcall TForm1(TComponent* Owner);

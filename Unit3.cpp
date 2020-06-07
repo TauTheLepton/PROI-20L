@@ -12,11 +12,13 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm3 *Form3;
-OperationStack stack;
+OperationStack stack3;
 //---------------------------------------------------------------------------
 
 bool is_num(AnsiString s)
 {
+        /// funkcja pomocnicza do sprawdzania, czy wartość tekstowa jest liczbą
+
         for(int i=1;i<=s.Length();i++)
         {
               if (!isdigit(s[i]))
@@ -31,7 +33,7 @@ bool is_num(AnsiString s)
 __fastcall TForm3::TForm3(TComponent* Owner)
         : TForm(Owner)
 {
-        ComboBox1->Items->Add("Ksi��ka");
+        ComboBox1->Items->Add("Ksi¹¿ka");
         ComboBox1->Items->Add("Czasopismo");
         ComboBox1->Items->Add("Praca naukowa");
         ComboBox1->Items->Add("Audiobook");
@@ -44,6 +46,8 @@ __fastcall TForm3::TForm3(TComponent* Owner)
 
 void __fastcall TForm3::ComboBox1Change(TObject *Sender)
 {
+        /// kod wykonujacy sie, gdy zmieniamy pozycje w liscie rozwijanej
+
         LabeledEdit1->Enabled = true;
         LabeledEdit2->Enabled = true;
         LabeledEdit3->Enabled = true;
@@ -76,6 +80,8 @@ void __fastcall TForm3::Button1Click(TObject *Sender)
 {
         Library* lib = Library::getInstance();
 
+        /// zapisuje dane wpisane w polach tekstowych
+
         AnsiString id = LabeledEdit1->Text;
         AnsiString title = LabeledEdit2->Text;
         AnsiString name = LabeledEdit3->Text;
@@ -87,17 +93,24 @@ void __fastcall TForm3::Button1Click(TObject *Sender)
         AnsiString pages = LabeledEdit6->Text;
         AnsiString format = LabeledEdit8->Text;
 
+        /// sprawdzam obecnie wybrana pozycje w liscie rozwijanej
+        /// (sprawdzam wybrany typ danych)
         int a = ComboBox1->ItemIndex;
 
+        /// zmienne, ktore sygnalizuja, czy podane dane liczbowe sa poprawne
         bool id_c = is_num(id);
         bool year_c = is_num(year);
         bool pages_c = is_num(pages);
         bool number_c = is_num(number);
 
+        /// sprawdzam, czy odpowiednie pola sa wypelnione
         if(a==0 && id!="" && title!="" && name!="" && surname!="" && year!="" && publisher!="" && pages!="")
         {
+             /// sprawdzam, czy ponizsze wartosci sa liczbami, jesli tak, procedura bedzie kontynuowana
              if(id_c && year_c && pages_c)
              {
+                        /// teraz sprawdzamy, czy numer ID jest unikalny
+
                         int id_ = atoi(id.c_str());
                         if(lib->is_unique_id(id_))
                         {
@@ -107,10 +120,12 @@ void __fastcall TForm3::Button1Click(TObject *Sender)
                                 Book* b = new Book(id_,title.c_str(),name.c_str(),surname.c_str(),year_,pages_,publisher.c_str(),true);
                                 lib->add_to_library(b);
 
-                                string message = "Dodano do biblioteki egzemplarz o numerze: ";
+                                string message = "Dodano do biblioteki egzemplarz o sygnaturze: ";
                                 string report = report_creator(1, message, id_);
 
-                                stack.push(report);
+                                stack3.push(report);
+
+                                Form3->Close();
                         }
                         else
                         {
@@ -124,8 +139,11 @@ void __fastcall TForm3::Button1Click(TObject *Sender)
         }
         else if(a==1 && id!="" && title!="" && name!="" && surname!="" && year!="" && publisher!="" && pages!="" && number!="")
         {
+             /// sprawdzam, czy ponizsze wartosci sa liczbami, jesli tak, procedura bedzie kontynuowana
              if(id_c && year_c && pages_c && number_c)
              {
+
+                        /// teraz sprawdzamy, czy numer ID jest unikalny
 
                         int id_ = atoi(id.c_str());
                         if(lib->is_unique_id(id_))
@@ -137,10 +155,10 @@ void __fastcall TForm3::Button1Click(TObject *Sender)
                                 Magazine* m = new Magazine(id_,title.c_str(),name.c_str(),surname.c_str(),year_,pages_,publisher.c_str(),number_,true);
                                 lib->add_to_library(m);
 
-                                string message = "Dodano do biblioteki egzemplarz o numerze: ";
+                                string message = "Dodano do biblioteki egzemplarz o sygnaturze: ";
                                 string report = report_creator(1, message, id_);
 
-                                stack.push(report);
+                                stack3.push(report);
 
                                 Form3->Close();
                         }
@@ -156,8 +174,11 @@ void __fastcall TForm3::Button1Click(TObject *Sender)
         }
         else if(a==2 && id!="" && title!="" && name!="" && surname!="" && year!="" && publisher!="" && pages!="" && discipline!="")
         {
+             /// sprawdzam, czy ponizsze wartosci sa liczbami, jesli tak, procedura bedzie kontynuowana
              if(id_c && year_c && pages_c)
              {
+                        /// teraz sprawdzamy, czy numer ID jest unikalny
+
                         int id_ = atoi(id.c_str());
                         if(lib->is_unique_id(id_))
                         {
@@ -167,10 +188,10 @@ void __fastcall TForm3::Button1Click(TObject *Sender)
                                 ScientificWork* s = new ScientificWork(id_,title.c_str(),name.c_str(),surname.c_str(),year_,pages_,publisher.c_str(),discipline.c_str(),true);
                                 lib->add_to_library(s);
 
-                                string message = "Dodano do biblioteki egzemplarz o numerze: ";
+                                string message = "Dodano do biblioteki egzemplarz o sygnaturze: ";
                                 string report = report_creator(1, message, id_);
 
-                                stack.push(report);
+                                stack3.push(report);
 
                                 Form3->Close();
                         }
@@ -186,8 +207,11 @@ void __fastcall TForm3::Button1Click(TObject *Sender)
         }
         else if(a==3 && id!="" && title!="" && name!="" && surname!="" && year!="" && publisher!="" && pages!="" && format!="")
         {
+             /// sprawdzam, czy ponizsze wartosci sa liczbami, jesli tak, procedura bedzie kontynuowana
              if(id_c && year_c && pages_c)
              {
+                        /// teraz sprawdzamy, czy numer ID jest unikalny
+
                         int id_ = atoi(id.c_str());
                         if(lib->is_unique_id(id_))
                         {
@@ -197,10 +221,10 @@ void __fastcall TForm3::Button1Click(TObject *Sender)
                                 Audiobook* au = new Audiobook(id_,title.c_str(),name.c_str(),surname.c_str(),year_,pages_,publisher.c_str(),format.c_str(),true);
                                 lib->add_to_library(au);
 
-                                string message = "Dodano do biblioteki egzemplarz o numerze: ";
+                                string message = "Dodano do biblioteki egzemplarz o sygnaturze: ";
                                 string report = report_creator(1, message, id_);
 
-                                stack.push(report);
+                                stack3.push(report);
 
                                 Form3->Close();
                         }
